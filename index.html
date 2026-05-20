@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>星待ち図書館</title>
+  <title>西洋料理店 山猫軒</title>
   <style>
     * {
       box-sizing: border-box;
@@ -15,10 +15,22 @@
 
     body {
       margin: 0;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      color: #2b241c;
-      background: #f4efe4;
-      line-height: 1.7;
+      color: #f4ead2;
+      background: #101811;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
+      line-height: 1.75;
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      content: "";
+      background:
+        linear-gradient(rgba(16, 24, 17, 0.66), rgba(16, 24, 17, 0.94)),
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 72px),
+        radial-gradient(circle at 70% 16%, rgba(211, 157, 75, 0.22), transparent 28%),
+        linear-gradient(135deg, #17261a, #0a100b 74%);
     }
 
     a {
@@ -33,9 +45,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
       padding: 18px 7vw;
-      background: rgba(244, 239, 228, 0.9);
-      border-bottom: 1px solid rgba(73, 52, 34, 0.16);
+      background: rgba(13, 20, 14, 0.86);
+      border-bottom: 1px solid rgba(244, 234, 210, 0.14);
       backdrop-filter: blur(14px);
     }
 
@@ -48,71 +61,69 @@
 
     .brand-mark {
       display: grid;
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       place-items: center;
-      color: #f8f0d8;
-      background: #315c4b;
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #15100b;
+      background: #d39d4b;
+      border: 1px solid rgba(255, 255, 255, 0.38);
       border-radius: 8px;
-      font-size: 18px;
+      font-family: Arial, "Hiragino Sans", sans-serif;
+      font-weight: 900;
     }
 
     .nav {
       display: flex;
-      gap: 22px;
-      color: #5f5142;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #d9c9a6;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
-      gap: 54px;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+      gap: 56px;
       align-items: center;
-      min-height: 76vh;
-      padding: 74px 7vw 58px;
-      background:
-        linear-gradient(90deg, rgba(244, 239, 228, 0.95), rgba(244, 239, 228, 0.55)),
-        radial-gradient(circle at 84% 22%, rgba(201, 160, 83, 0.24), transparent 30%),
-        linear-gradient(135deg, #f4efe4 0%, #e7dcc6 100%);
+      min-height: 78vh;
+      padding: 78px 7vw 62px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       margin: 0 0 18px;
-      color: #7b2830;
+      color: #d39d4b;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
     .eyebrow::before {
-      content: "";
-      width: 32px;
+      width: 34px;
       height: 1px;
-      background: #7b2830;
+      background: #d39d4b;
+      content: "";
     }
 
     .hero h1 {
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 0 20px;
-      color: #24372f;
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: 1.05;
+      color: #fff4d8;
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
     .hero p {
-      max-width: 620px;
+      max-width: 640px;
       margin: 0 0 30px;
-      color: #5c5146;
+      color: #d9c9a6;
       font-size: 18px;
     }
 
@@ -126,12 +137,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 12px 18px;
+      min-height: 48px;
+      padding: 12px 20px;
       border-radius: 8px;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
-      font-weight: 800;
-      transition: transform 160ms ease, box-shadow 160ms ease;
+      font-weight: 900;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
     }
 
     .button:hover {
@@ -139,122 +150,100 @@
     }
 
     .button.primary {
-      color: #fff8e8;
-      background: #315c4b;
-      box-shadow: 0 16px 34px rgba(49, 92, 75, 0.22);
+      color: #15100b;
+      background: #d39d4b;
+      box-shadow: 0 18px 38px rgba(211, 157, 75, 0.22);
     }
 
     .button.secondary {
-      color: #315c4b;
-      background: rgba(255, 251, 241, 0.8);
-      border: 1px solid rgba(49, 92, 75, 0.25);
+      color: #f4ead2;
+      background: rgba(244, 234, 210, 0.08);
+      border: 1px solid rgba(244, 234, 210, 0.24);
     }
 
-    .library-window {
+    .door-card {
       overflow: hidden;
-      background: #2f271f;
-      border: 10px solid #6c4a2f;
+      background: #21170f;
+      border: 1px solid rgba(244, 234, 210, 0.18);
       border-radius: 8px;
-      box-shadow: 0 28px 70px rgba(67, 45, 28, 0.28);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
     }
 
-    .window-top {
-      display: flex;
-      justify-content: space-between;
-      padding: 14px 16px;
-      color: #ead9b6;
-      background: #24372f;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
-      font-size: 13px;
-      font-weight: 700;
+    .signboard {
+      padding: 28px 24px;
+      color: #15100b;
+      text-align: center;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.26), transparent 30%),
+        #d39d4b;
+      border-bottom: 10px solid #604225;
     }
 
-    .shelves {
+    .signboard span {
+      display: block;
+      font-family: Arial, "Hiragino Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .signboard strong {
+      display: block;
+      margin-top: 6px;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1;
+    }
+
+    .doors {
       display: grid;
-      gap: 14px;
+      gap: 12px;
       padding: 22px;
       background:
-        linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
-        #3d2f24;
+        linear-gradient(90deg, rgba(0, 0, 0, 0.16), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.2)),
+        #2a1c12;
     }
 
-    .shelf {
-      display: grid;
-      grid-template-columns: 0.7fr 1.2fr 0.45fr 1fr 0.6fr;
-      gap: 8px;
-      align-items: end;
-      min-height: 82px;
-      padding: 0 10px 10px;
-      border-bottom: 8px solid #8b623d;
-    }
-
-    .book {
-      display: block;
-      border-radius: 3px 3px 0 0;
-      box-shadow: inset -8px 0 rgba(0, 0, 0, 0.12);
-    }
-
-    .book.green {
-      height: 68px;
-      background: #315c4b;
-    }
-
-    .book.red {
-      height: 56px;
-      background: #7b2830;
-    }
-
-    .book.gold {
-      height: 74px;
-      background: #c9a053;
-    }
-
-    .book.cream {
-      height: 62px;
-      background: #ead9b6;
-    }
-
-    .reading-card {
-      margin: 0 22px 22px;
-      padding: 18px;
-      color: #2b241c;
-      background: #fff8e8;
-      border-left: 5px solid #c9a053;
+    .door-note {
+      padding: 16px;
+      color: #f8efd6;
+      background: rgba(244, 234, 210, 0.08);
+      border: 1px solid rgba(244, 234, 210, 0.16);
       border-radius: 8px;
     }
 
-    .reading-card strong {
+    .door-note strong {
       display: block;
-      color: #315c4b;
+      color: #d39d4b;
       font-size: 18px;
     }
 
-    .reading-card span {
-      color: #6d5d4d;
+    .door-note span {
+      color: #cdbb95;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
       font-size: 14px;
     }
 
     section {
-      padding: 72px 7vw;
+      padding: 74px 7vw;
     }
 
     .section-title {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 0 30px;
     }
 
     .section-title h2 {
       margin: 0 0 10px;
-      color: #24372f;
-      font-size: clamp(28px, 4vw, 44px);
+      color: #fff4d8;
+      font-size: clamp(30px, 4vw, 48px);
       line-height: 1.14;
       letter-spacing: 0;
     }
 
     .section-title p {
       margin: 0;
-      color: #66594c;
+      color: #cdbb95;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
     }
 
@@ -266,97 +255,144 @@
 
     .card {
       padding: 24px;
-      background: #fff8e8;
-      border: 1px solid rgba(92, 70, 45, 0.14);
+      background: rgba(244, 234, 210, 0.08);
+      border: 1px solid rgba(244, 234, 210, 0.15);
       border-radius: 8px;
-      box-shadow: 0 12px 32px rgba(67, 45, 28, 0.08);
+      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
     }
 
     .card h3 {
       margin: 0 0 10px;
-      color: #315c4b;
-      font-size: 21px;
+      color: #d39d4b;
+      font-size: 22px;
     }
 
     .card p {
       margin: 0;
-      color: #66594c;
+      color: #d7c6a5;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
     }
 
-    .hours {
+    .notice-band {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
-      background: #24372f;
-      color: #fff8e8;
-      border-top: 1px solid rgba(255, 248, 232, 0.18);
-      border-bottom: 1px solid rgba(255, 248, 232, 0.18);
+      color: #15100b;
+      background: #d39d4b;
+      border-top: 1px solid rgba(255, 255, 255, 0.24);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.24);
     }
 
-    .hour {
+    .notice {
       padding: 28px 7vw 28px 0;
     }
 
-    .hour:first-child {
+    .notice:first-child {
       padding-left: 7vw;
     }
 
-    .hour strong {
+    .notice strong {
       display: block;
-      color: #ead9b6;
-      font-size: 30px;
+      font-size: 28px;
       line-height: 1.1;
     }
 
-    .hour span {
+    .notice span {
       display: block;
       margin-top: 8px;
-      color: #cfc3aa;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
-      font-weight: 700;
+      font-weight: 800;
     }
 
-    .events {
-      background: #ebe1cd;
+    .course-section {
+      background:
+        linear-gradient(rgba(10, 16, 11, 0.9), rgba(10, 16, 11, 0.92)),
+        #0a100b;
     }
 
-    .event-list {
+    .course-list {
       display: grid;
       gap: 14px;
-      max-width: 920px;
+      max-width: 980px;
     }
 
-    .event {
+    .course {
       display: grid;
-      grid-template-columns: 110px 1fr;
+      grid-template-columns: 116px 1fr auto;
       gap: 18px;
       align-items: center;
       padding: 18px;
-      background: #fff8e8;
-      border: 1px solid rgba(92, 70, 45, 0.14);
+      background: rgba(244, 234, 210, 0.08);
+      border: 1px solid rgba(244, 234, 210, 0.15);
       border-radius: 8px;
     }
 
-    .date {
+    .course-number {
       display: grid;
-      min-height: 74px;
+      min-height: 76px;
       place-items: center;
-      color: #fff8e8;
-      background: #7b2830;
+      color: #f4ead2;
+      background: #6b2424;
       border-radius: 8px;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-family: Arial, "Hiragino Sans", sans-serif;
       font-weight: 900;
     }
 
-    .event h3 {
+    .course h3 {
       margin: 0 0 4px;
-      color: #24372f;
+      color: #fff4d8;
     }
 
-    .event p {
+    .course p {
       margin: 0;
-      color: #66594c;
+      color: #cdbb95;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+
+    .price {
+      color: #d39d4b;
+      font-family: Arial, "Hiragino Sans", sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .steps {
+      background: #171f16;
+    }
+
+    .step-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .step {
+      padding: 24px;
+      color: #15100b;
+      background: #f4ead2;
+      border-left: 6px solid #d39d4b;
+      border-radius: 8px;
+    }
+
+    .step strong {
+      display: block;
+      color: #6b2424;
+      font-family: Arial, "Hiragino Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .step h3 {
+      margin: 8px 0 8px;
+      color: #1f2d20;
+      font-size: 22px;
+    }
+
+    .step p {
+      margin: 0;
+      color: #4f4434;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
     }
 
@@ -364,71 +400,70 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      color: #fff8e8;
+      gap: 26px;
+      color: #fff4d8;
       background:
-        linear-gradient(90deg, rgba(36, 55, 47, 0.96), rgba(49, 92, 75, 0.92)),
-        #315c4b;
+        linear-gradient(90deg, rgba(107, 36, 36, 0.95), rgba(31, 45, 32, 0.94)),
+        #6b2424;
     }
 
     .cta h2 {
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(30px, 4vw, 48px);
       line-height: 1.14;
     }
 
     .cta p {
-      max-width: 620px;
+      max-width: 650px;
       margin: 0;
-      color: #e2d6bd;
+      color: #e8d7b5;
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
     }
 
     .footer {
       padding: 26px 7vw;
-      color: #6b5d50;
-      background: #fff8e8;
-      border-top: 1px solid rgba(73, 52, 34, 0.16);
+      color: #bda982;
+      background: #0a100b;
+      border-top: 1px solid rgba(244, 234, 210, 0.12);
       font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
       font-size: 14px;
     }
 
-    @media (max-width: 840px) {
+    @media (max-width: 880px) {
       .site-header {
         position: static;
         align-items: flex-start;
         flex-direction: column;
-        gap: 14px;
-      }
-
-      .nav {
-        flex-wrap: wrap;
-        gap: 12px 18px;
       }
 
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
-        padding-top: 46px;
+        padding-top: 48px;
       }
 
       .grid,
-      .hours {
+      .notice-band,
+      .step-list {
         grid-template-columns: 1fr;
       }
 
-      .hour,
-      .hour:first-child {
+      .notice,
+      .notice:first-child {
         padding: 18px 7vw;
       }
 
-      .event {
+      .course {
         grid-template-columns: 1fr;
       }
 
-      .date {
+      .course-number {
         min-height: 52px;
+      }
+
+      .price {
+        justify-self: start;
       }
 
       .cta {
@@ -441,151 +476,168 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#">
-      <span class="brand-mark">本</span>
-      <span>星待ち図書館</span>
+      <span class="brand-mark">軒</span>
+      <span>西洋料理店 山猫軒</span>
     </a>
     <nav class="nav" aria-label="メインナビゲーション">
-      <a href="#collections">蔵書</a>
-      <a href="#hours">開館案内</a>
-      <a href="#events">催し</a>
-      <a href="#visit">アクセス</a>
+      <a href="#about">当店について</a>
+      <a href="#menu">献立</a>
+      <a href="#orders">ご注文</a>
+      <a href="#access">ご来店</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Machi Library of Stars</p>
-        <h1>静かな夜に、物語の灯りがともる。</h1>
+        <p class="eyebrow">Restaurant Wildcat House</p>
+        <h1>森の奥で、お客様をお待ちしております。</h1>
         <p>
-          星待ち図書館は、港町の坂の上にある架空の小さな図書館です。
-          古い文学、旅の記録、天文書、こどもの絵本まで、ゆっくり選べる本棚を用意しています。
+          宮沢賢治『注文の多い料理店』に登場する飲食店「山猫軒」を題材にした、
+          架空の公式サイトです。深い森を抜けた先にある、少し奇妙で上品な西洋料理店として再構成しました。
         </p>
         <div class="actions">
-          <a class="button primary" href="#visit">来館案内を見る</a>
-          <a class="button secondary" href="#events">今月の催し</a>
+          <a class="button primary" href="#menu">献立を見る</a>
+          <a class="button secondary" href="#orders">ご注文の流れ</a>
         </div>
       </div>
 
-      <div class="library-window" aria-label="図書館の本棚イメージ">
-        <div class="window-top">
-          <span>本日の閲覧室</span>
-          <span>21:00まで</span>
+      <div class="door-card" aria-label="山猫軒の入口イメージ">
+        <div class="signboard">
+          <span>Western Restaurant</span>
+          <strong>山猫軒</strong>
         </div>
-        <div class="shelves">
-          <div class="shelf">
-            <span class="book green"></span>
-            <span class="book gold"></span>
-            <span class="book red"></span>
-            <span class="book cream"></span>
-            <span class="book green"></span>
+        <div class="doors">
+          <div class="door-note">
+            <strong>一、森の中ほどで足を止める</strong>
+            <span>霧が濃くなったら、看板の明かりを目印にお進みください。</span>
           </div>
-          <div class="shelf">
-            <span class="book red"></span>
-            <span class="book cream"></span>
-            <span class="book green"></span>
-            <span class="book gold"></span>
-            <span class="book red"></span>
+          <div class="door-note">
+            <strong>二、扉ごとの案内をよく読む</strong>
+            <span>当店は、お客様にいくつかのお願いを差し上げる場合がございます。</span>
           </div>
-          <div class="shelf">
-            <span class="book cream"></span>
-            <span class="book green"></span>
-            <span class="book gold"></span>
-            <span class="book red"></span>
-            <span class="book cream"></span>
+          <div class="door-note">
+            <strong>三、最後の部屋で席へご案内</strong>
+            <span>銀のナイフと白い皿をそろえて、静かにお迎えいたします。</span>
           </div>
-        </div>
-        <div class="reading-card">
-          <strong>今週の一冊: 星図の余白</strong>
-          <span>旅する司書が残した、夜空と町の記録。</span>
         </div>
       </div>
     </section>
 
-    <section id="collections">
+    <section id="about">
       <div class="section-title">
-        <h2>本と過ごす時間を、少し特別に。</h2>
-        <p>調べものにも、休憩にも、偶然の一冊との出会いにも使える場所です。</p>
+        <h2>紳士淑女のための、森の洋食店。</h2>
+        <p>
+          山猫軒は、山歩きの途中にふいに現れる一軒家。
+          優雅な食卓と、どこか不穏なもてなしを味わえる物語仕立てのレストランです。
+        </p>
       </div>
       <div class="grid">
         <article class="card">
-          <h3>月灯り文庫</h3>
-          <p>近現代文学、詩集、短編集を中心に、静かに読み返したくなる本を集めています。</p>
+          <h3>森深いロケーション</h3>
+          <p>木立の影、遠い風音、古びた看板。到着までの道のりも体験の一部です。</p>
         </article>
         <article class="card">
-          <h3>旅と地図の棚</h3>
-          <p>架空都市の地図、紀行文、古い航海日誌など、遠くへ行きたくなる資料を並べています。</p>
+          <h3>注文の多い接客</h3>
+          <p>帽子、靴、香り、身だしなみ。扉を進むたびに、店からの案内が現れます。</p>
         </article>
         <article class="card">
-          <h3>こどもの星室</h3>
-          <p>絵本、紙芝居、読み聞かせ用の本をそろえた、親子で過ごしやすい小部屋です。</p>
+          <h3>物語を味わう献立</h3>
+          <p>クラシックな西洋料理を、童話の緊張感と森の香りで演出します。</p>
         </article>
       </div>
     </section>
 
-    <section id="hours" class="hours" aria-label="開館案内">
-      <div class="hour">
-        <strong>10:00</strong>
-        <span>平日開館</span>
+    <section class="notice-band" aria-label="店舗情報">
+      <div class="notice">
+        <strong>日没前</strong>
+        <span>入店推奨時刻</span>
       </div>
-      <div class="hour">
-        <strong>21:00</strong>
-        <span>金曜のみ夜間開館</span>
+      <div class="notice">
+        <strong>7枚</strong>
+        <span>案内扉の数</span>
       </div>
-      <div class="hour">
-        <strong>第2火曜</strong>
-        <span>館内整理日</span>
+      <div class="notice">
+        <strong>要読了</strong>
+        <span>各扉の注意書き</span>
       </div>
-      <div class="hour">
-        <strong>5冊</strong>
-        <span>2週間まで貸出</span>
+      <div class="notice">
+        <strong>森奥</strong>
+        <span>詳しい住所は非公開</span>
       </div>
     </section>
 
-    <section id="events" class="events">
+    <section id="menu" class="course-section">
       <div class="section-title">
-        <h2>今月の催し</h2>
-        <p>予約不要の小さな催しを中心に、読書のきっかけになる時間をつくっています。</p>
+        <h2>本日のおすすめ</h2>
+        <p>山歩きのあとに似合う、香り高い洋食をご用意しました。</p>
       </div>
-      <div class="event-list">
-        <article class="event">
-          <div class="date">6/7 Sat</div>
+      <div class="course-list">
+        <article class="course">
+          <div class="course-number">Course 01</div>
           <div>
-            <h3>夜の朗読会</h3>
-            <p>閉館後の閲覧室で、短編と詩をゆっくり読む一時間です。</p>
+            <h3>森番のビーフシチュー</h3>
+            <p>赤ワインと香味野菜でじっくり煮込んだ、深い色合いの一皿。</p>
           </div>
+          <span class="price">2,400円</span>
         </article>
-        <article class="event">
-          <div class="date">6/15 Sun</div>
+        <article class="course">
+          <div class="course-number">Course 02</div>
           <div>
-            <h3>親子おはなし会</h3>
-            <p>こどもの星室で、季節の絵本と紙芝居を楽しめます。</p>
+            <h3>山鳥風ローストプレート</h3>
+            <p>香草、焦がしバター、野生味のあるソースを合わせた看板料理。</p>
           </div>
+          <span class="price">2,900円</span>
         </article>
-        <article class="event">
-          <div class="date">6/28 Sat</div>
+        <article class="course">
+          <div class="course-number">Course 03</div>
           <div>
-            <h3>古地図を読む会</h3>
-            <p>架空の港町を題材に、地図から物語を読み解くワークショップです。</p>
+            <h3>白い扉のデザート</h3>
+            <p>クリーム、洋梨、ナッツを重ねた、最後の部屋にふさわしい甘味。</p>
           </div>
+          <span class="price">1,100円</span>
         </article>
       </div>
     </section>
 
-    <section id="visit" class="cta">
+    <section id="orders" class="steps">
+      <div class="section-title">
+        <h2>ご注文の流れ</h2>
+        <p>当店では、席に着くまでの一つひとつの手順も大切なサービスです。</p>
+      </div>
+      <div class="step-list">
+        <article class="step">
+          <strong>Step 1</strong>
+          <h3>看板を見つける</h3>
+          <p>山道で迷われたお客様は、金色の文字が光る看板をお探しください。</p>
+        </article>
+        <article class="step">
+          <strong>Step 2</strong>
+          <h3>身なりを整える</h3>
+          <p>扉の案内に従い、帽子や外套、余分な荷物を順にお預けください。</p>
+        </article>
+        <article class="step">
+          <strong>Step 3</strong>
+          <h3>奥の間へ進む</h3>
+          <p>最後の扉の先で、当店自慢の料理と静かな食卓をお楽しみください。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="access" class="cta">
       <div>
-        <h2>坂の上の閲覧室で、お待ちしています。</h2>
+        <h2>お腹をすかせたお客様を、歓迎いたします。</h2>
         <p>
-          星待ち図書館 〒000-0000 星見町 3-12-4。
-          夕方以降は読書灯を増やし、静かな閲覧席を多めに用意しています。
+          山猫軒は物語の中にある架空の飲食店です。
+          このページは『注文の多い料理店』の世界観をもとにしたサンプルWebサイトです。
         </p>
       </div>
-      <a class="button primary" href="mailto:info@hoshimachi-library.example">問い合わせる</a>
+      <a class="button primary" href="mailto:info@yamaneko-ken.example">予約の相談</a>
     </section>
   </main>
 
   <footer class="footer">
-    <small>&copy; 2026 星待ち図書館. このWebサイトは架空の図書館を題材にしたサンプルです。</small>
+    <small>&copy; 2026 西洋料理店 山猫軒. 宮沢賢治『注文の多い料理店』に着想を得た架空サイトです。</small>
   </footer>
 </body>
 </html>
