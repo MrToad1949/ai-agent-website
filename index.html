@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>星待ち図書館</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+      color: #2b241c;
+      background: #f4efe4;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 7vw;
+      background: rgba(244, 239, 228, 0.9);
+      border-bottom: 1px solid rgba(73, 52, 34, 0.16);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      color: #f8f0d8;
+      background: #315c4b;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 8px;
+      font-size: 18px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 22px;
+      color: #5f5142;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.82fr);
+      gap: 54px;
+      align-items: center;
+      min-height: 76vh;
+      padding: 74px 7vw 58px;
+      background:
+        linear-gradient(90deg, rgba(244, 239, 228, 0.95), rgba(244, 239, 228, 0.55)),
+        radial-gradient(circle at 84% 22%, rgba(201, 160, 83, 0.24), transparent 30%),
+        linear-gradient(135deg, #f4efe4 0%, #e7dcc6 100%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      color: #7b2830;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 1px;
+      background: #7b2830;
+    }
+
+    .hero h1 {
+      max-width: 720px;
+      margin: 0 0 20px;
+      color: #24372f;
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 0 30px;
+      color: #5c5146;
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-weight: 800;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      color: #fff8e8;
+      background: #315c4b;
+      box-shadow: 0 16px 34px rgba(49, 92, 75, 0.22);
+    }
+
+    .button.secondary {
+      color: #315c4b;
+      background: rgba(255, 251, 241, 0.8);
+      border: 1px solid rgba(49, 92, 75, 0.25);
+    }
+
+    .library-window {
+      overflow: hidden;
+      background: #2f271f;
+      border: 10px solid #6c4a2f;
+      border-radius: 8px;
+      box-shadow: 0 28px 70px rgba(67, 45, 28, 0.28);
+    }
+
+    .window-top {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+      color: #ead9b6;
+      background: #24372f;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .shelves {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+        #3d2f24;
+    }
+
+    .shelf {
+      display: grid;
+      grid-template-columns: 0.7fr 1.2fr 0.45fr 1fr 0.6fr;
+      gap: 8px;
+      align-items: end;
+      min-height: 82px;
+      padding: 0 10px 10px;
+      border-bottom: 8px solid #8b623d;
+    }
+
+    .book {
+      display: block;
+      border-radius: 3px 3px 0 0;
+      box-shadow: inset -8px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .book.green {
+      height: 68px;
+      background: #315c4b;
+    }
+
+    .book.red {
+      height: 56px;
+      background: #7b2830;
+    }
+
+    .book.gold {
+      height: 74px;
+      background: #c9a053;
+    }
+
+    .book.cream {
+      height: 62px;
+      background: #ead9b6;
+    }
+
+    .reading-card {
+      margin: 0 22px 22px;
+      padding: 18px;
+      color: #2b241c;
+      background: #fff8e8;
+      border-left: 5px solid #c9a053;
+      border-radius: 8px;
+    }
+
+    .reading-card strong {
+      display: block;
+      color: #315c4b;
+      font-size: 18px;
+    }
+
+    .reading-card span {
+      color: #6d5d4d;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 72px 7vw;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin: 0 0 30px;
+    }
+
+    .section-title h2 {
+      margin: 0 0 10px;
+      color: #24372f;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .section-title p {
+      margin: 0;
+      color: #66594c;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      background: #fff8e8;
+      border: 1px solid rgba(92, 70, 45, 0.14);
+      border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(67, 45, 28, 0.08);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: #315c4b;
+      font-size: 21px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #66594c;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+
+    .hours {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      background: #24372f;
+      color: #fff8e8;
+      border-top: 1px solid rgba(255, 248, 232, 0.18);
+      border-bottom: 1px solid rgba(255, 248, 232, 0.18);
+    }
+
+    .hour {
+      padding: 28px 7vw 28px 0;
+    }
+
+    .hour:first-child {
+      padding-left: 7vw;
+    }
+
+    .hour strong {
+      display: block;
+      color: #ead9b6;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+
+    .hour span {
+      display: block;
+      margin-top: 8px;
+      color: #cfc3aa;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-weight: 700;
+    }
+
+    .events {
+      background: #ebe1cd;
+    }
+
+    .event-list {
+      display: grid;
+      gap: 14px;
+      max-width: 920px;
+    }
+
+    .event {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      background: #fff8e8;
+      border: 1px solid rgba(92, 70, 45, 0.14);
+      border-radius: 8px;
+    }
+
+    .date {
+      display: grid;
+      min-height: 74px;
+      place-items: center;
+      color: #fff8e8;
+      background: #7b2830;
+      border-radius: 8px;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-weight: 900;
+    }
+
+    .event h3 {
+      margin: 0 0 4px;
+      color: #24372f;
+    }
+
+    .event p {
+      margin: 0;
+      color: #66594c;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: #fff8e8;
+      background:
+        linear-gradient(90deg, rgba(36, 55, 47, 0.96), rgba(49, 92, 75, 0.92)),
+        #315c4b;
+    }
+
+    .cta h2 {
+      max-width: 700px;
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.14;
+    }
+
+    .cta p {
+      max-width: 620px;
+      margin: 0;
+      color: #e2d6bd;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    }
+
+    .footer {
+      padding: 26px 7vw;
+      color: #6b5d50;
+      background: #fff8e8;
+      border-top: 1px solid rgba(73, 52, 34, 0.16);
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      font-size: 14px;
+    }
+
+    @media (max-width: 840px) {
+      .site-header {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        gap: 12px 18px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 46px;
+      }
+
+      .grid,
+      .hours {
+        grid-template-columns: 1fr;
+      }
+
+      .hour,
+      .hour:first-child {
+        padding: 18px 7vw;
+      }
+
+      .event {
+        grid-template-columns: 1fr;
+      }
+
+      .date {
+        min-height: 52px;
+      }
+
+      .cta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">
+      <span class="brand-mark">本</span>
+      <span>星待ち図書館</span>
+    </a>
+    <nav class="nav" aria-label="メインナビゲーション">
+      <a href="#collections">蔵書</a>
+      <a href="#hours">開館案内</a>
+      <a href="#events">催し</a>
+      <a href="#visit">アクセス</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Machi Library of Stars</p>
+        <h1>静かな夜に、物語の灯りがともる。</h1>
+        <p>
+          星待ち図書館は、港町の坂の上にある架空の小さな図書館です。
+          古い文学、旅の記録、天文書、こどもの絵本まで、ゆっくり選べる本棚を用意しています。
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#visit">来館案内を見る</a>
+          <a class="button secondary" href="#events">今月の催し</a>
+        </div>
+      </div>
+
+      <div class="library-window" aria-label="図書館の本棚イメージ">
+        <div class="window-top">
+          <span>本日の閲覧室</span>
+          <span>21:00まで</span>
+        </div>
+        <div class="shelves">
+          <div class="shelf">
+            <span class="book green"></span>
+            <span class="book gold"></span>
+            <span class="book red"></span>
+            <span class="book cream"></span>
+            <span class="book green"></span>
+          </div>
+          <div class="shelf">
+            <span class="book red"></span>
+            <span class="book cream"></span>
+            <span class="book green"></span>
+            <span class="book gold"></span>
+            <span class="book red"></span>
+          </div>
+          <div class="shelf">
+            <span class="book cream"></span>
+            <span class="book green"></span>
+            <span class="book gold"></span>
+            <span class="book red"></span>
+            <span class="book cream"></span>
+          </div>
+        </div>
+        <div class="reading-card">
+          <strong>今週の一冊: 星図の余白</strong>
+          <span>旅する司書が残した、夜空と町の記録。</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="collections">
+      <div class="section-title">
+        <h2>本と過ごす時間を、少し特別に。</h2>
+        <p>調べものにも、休憩にも、偶然の一冊との出会いにも使える場所です。</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>月灯り文庫</h3>
+          <p>近現代文学、詩集、短編集を中心に、静かに読み返したくなる本を集めています。</p>
+        </article>
+        <article class="card">
+          <h3>旅と地図の棚</h3>
+          <p>架空都市の地図、紀行文、古い航海日誌など、遠くへ行きたくなる資料を並べています。</p>
+        </article>
+        <article class="card">
+          <h3>こどもの星室</h3>
+          <p>絵本、紙芝居、読み聞かせ用の本をそろえた、親子で過ごしやすい小部屋です。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="hours" class="hours" aria-label="開館案内">
+      <div class="hour">
+        <strong>10:00</strong>
+        <span>平日開館</span>
+      </div>
+      <div class="hour">
+        <strong>21:00</strong>
+        <span>金曜のみ夜間開館</span>
+      </div>
+      <div class="hour">
+        <strong>第2火曜</strong>
+        <span>館内整理日</span>
+      </div>
+      <div class="hour">
+        <strong>5冊</strong>
+        <span>2週間まで貸出</span>
+      </div>
+    </section>
+
+    <section id="events" class="events">
+      <div class="section-title">
+        <h2>今月の催し</h2>
+        <p>予約不要の小さな催しを中心に、読書のきっかけになる時間をつくっています。</p>
+      </div>
+      <div class="event-list">
+        <article class="event">
+          <div class="date">6/7 Sat</div>
+          <div>
+            <h3>夜の朗読会</h3>
+            <p>閉館後の閲覧室で、短編と詩をゆっくり読む一時間です。</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="date">6/15 Sun</div>
+          <div>
+            <h3>親子おはなし会</h3>
+            <p>こどもの星室で、季節の絵本と紙芝居を楽しめます。</p>
+          </div>
+        </article>
+        <article class="event">
+          <div class="date">6/28 Sat</div>
+          <div>
+            <h3>古地図を読む会</h3>
+            <p>架空の港町を題材に、地図から物語を読み解くワークショップです。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="visit" class="cta">
+      <div>
+        <h2>坂の上の閲覧室で、お待ちしています。</h2>
+        <p>
+          星待ち図書館 〒000-0000 星見町 3-12-4。
+          夕方以降は読書灯を増やし、静かな閲覧席を多めに用意しています。
+        </p>
+      </div>
+      <a class="button primary" href="mailto:info@hoshimachi-library.example">問い合わせる</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>&copy; 2026 星待ち図書館. このWebサイトは架空の図書館を題材にしたサンプルです。</small>
+  </footer>
+</body>
+</html>
