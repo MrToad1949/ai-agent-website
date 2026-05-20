@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>西洋料理店 山猫軒</title>
+  <title>ツチノコ捜索本部</title>
   <style>
     * {
       box-sizing: border-box;
@@ -15,10 +15,10 @@
 
     body {
       margin: 0;
-      color: #f4ead2;
-      background: #101811;
-      font-family: "Hiragino Mincho ProN", "Yu Mincho", Georgia, serif;
-      line-height: 1.75;
+      color: #23311f;
+      background: #f3efe2;
+      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      line-height: 1.7;
     }
 
     body::before {
@@ -27,10 +27,10 @@
       z-index: -2;
       content: "";
       background:
-        linear-gradient(rgba(16, 24, 17, 0.66), rgba(16, 24, 17, 0.94)),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 72px),
-        radial-gradient(circle at 70% 16%, rgba(211, 157, 75, 0.22), transparent 28%),
-        linear-gradient(135deg, #17261a, #0a100b 74%);
+        linear-gradient(rgba(243, 239, 226, 0.9), rgba(243, 239, 226, 0.97)),
+        radial-gradient(circle at 80% 18%, rgba(170, 115, 54, 0.22), transparent 30%),
+        repeating-linear-gradient(110deg, rgba(45, 74, 37, 0.06) 0 2px, transparent 2px 70px),
+        linear-gradient(135deg, #f5eed9, #dfe7d0 56%, #c6d4b2);
     }
 
     a {
@@ -47,8 +47,8 @@
       justify-content: space-between;
       gap: 24px;
       padding: 18px 7vw;
-      background: rgba(13, 20, 14, 0.86);
-      border-bottom: 1px solid rgba(244, 234, 210, 0.14);
+      background: rgba(243, 239, 226, 0.9);
+      border-bottom: 1px solid rgba(45, 74, 37, 0.16);
       backdrop-filter: blur(14px);
     }
 
@@ -56,19 +56,18 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .brand-mark {
       display: grid;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       place-items: center;
-      color: #15100b;
-      background: #d39d4b;
-      border: 1px solid rgba(255, 255, 255, 0.38);
+      color: #fff7df;
+      background: #2d4a25;
+      border: 1px solid rgba(255, 255, 255, 0.42);
       border-radius: 8px;
-      font-family: Arial, "Hiragino Sans", sans-serif;
       font-weight: 900;
     }
 
@@ -76,15 +75,14 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
-      color: #d9c9a6;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #59654f;
       font-size: 14px;
       font-weight: 800;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.86fr);
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
       gap: 56px;
       align-items: center;
       min-height: 78vh;
@@ -96,34 +94,34 @@
       align-items: center;
       gap: 10px;
       margin: 0 0 18px;
-      color: #d39d4b;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #9a5a24;
       font-size: 13px;
       font-weight: 900;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
     }
 
     .eyebrow::before {
       width: 34px;
       height: 1px;
-      background: #d39d4b;
+      background: #9a5a24;
       content: "";
     }
 
     .hero h1 {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 0 20px;
-      color: #fff4d8;
-      font-size: clamp(44px, 7vw, 88px);
-      line-height: 1.02;
+      color: #20371c;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: clamp(44px, 7vw, 86px);
+      line-height: 1.04;
       letter-spacing: 0;
     }
 
     .hero p {
-      max-width: 640px;
+      max-width: 660px;
       margin: 0 0 30px;
-      color: #d9c9a6;
+      color: #586552;
       font-size: 18px;
     }
 
@@ -140,9 +138,8 @@
       min-height: 48px;
       padding: 12px 20px;
       border-radius: 8px;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
       font-weight: 900;
-      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      transition: transform 160ms ease, box-shadow 160ms ease;
     }
 
     .button:hover {
@@ -150,77 +147,236 @@
     }
 
     .button.primary {
-      color: #15100b;
-      background: #d39d4b;
-      box-shadow: 0 18px 38px rgba(211, 157, 75, 0.22);
+      color: #fff7df;
+      background: #2d4a25;
+      box-shadow: 0 18px 38px rgba(45, 74, 37, 0.2);
     }
 
     .button.secondary {
-      color: #f4ead2;
-      background: rgba(244, 234, 210, 0.08);
-      border: 1px solid rgba(244, 234, 210, 0.24);
+      color: #2d4a25;
+      background: rgba(255, 247, 223, 0.88);
+      border: 1px solid rgba(45, 74, 37, 0.24);
     }
 
-    .door-card {
+    .field-card {
       overflow: hidden;
-      background: #21170f;
-      border: 1px solid rgba(244, 234, 210, 0.18);
+      background: #21351c;
+      border: 1px solid rgba(255, 247, 223, 0.18);
       border-radius: 8px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+      box-shadow: 0 30px 90px rgba(45, 74, 37, 0.28);
     }
 
-    .signboard {
-      padding: 28px 24px;
-      color: #15100b;
-      text-align: center;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.26), transparent 30%),
-        #d39d4b;
-      border-bottom: 10px solid #604225;
+    .field-top {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+      color: #f0d494;
+      background: #152512;
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .signboard span {
-      display: block;
-      font-family: Arial, "Hiragino Sans", sans-serif;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .signboard strong {
-      display: block;
-      margin-top: 6px;
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1;
-    }
-
-    .doors {
+    .radar {
+      position: relative;
       display: grid;
-      gap: 12px;
-      padding: 22px;
+      min-height: 360px;
+      place-items: center;
+      overflow: hidden;
       background:
-        linear-gradient(90deg, rgba(0, 0, 0, 0.16), transparent 18%, transparent 82%, rgba(0, 0, 0, 0.2)),
-        #2a1c12;
+        radial-gradient(circle at center, rgba(240, 212, 148, 0.12), transparent 34%),
+        repeating-linear-gradient(0deg, rgba(255, 247, 223, 0.07) 0 1px, transparent 1px 36px),
+        repeating-linear-gradient(90deg, rgba(255, 247, 223, 0.06) 0 1px, transparent 1px 36px),
+        #2e4a27;
     }
 
-    .door-note {
-      padding: 16px;
-      color: #f8efd6;
-      background: rgba(244, 234, 210, 0.08);
-      border: 1px solid rgba(244, 234, 210, 0.16);
+    .radar-screen {
+      position: absolute;
+      width: min(78%, 310px);
+      aspect-ratio: 1;
+      border: 2px solid rgba(240, 212, 148, 0.7);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, rgba(240, 212, 148, 0.18) 0 2px, transparent 3px),
+        repeating-radial-gradient(circle at center, transparent 0 48px, rgba(240, 212, 148, 0.34) 49px 51px),
+        linear-gradient(90deg, transparent 49.6%, rgba(240, 212, 148, 0.28) 49.6% 50.4%, transparent 50.4%),
+        linear-gradient(0deg, transparent 49.6%, rgba(240, 212, 148, 0.28) 49.6% 50.4%, transparent 50.4%);
+      box-shadow:
+        inset 0 0 34px rgba(240, 212, 148, 0.18),
+        0 0 34px rgba(240, 212, 148, 0.12);
+    }
+
+    .radar-sweep {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(240, 212, 148, 0.64), rgba(240, 212, 148, 0.18) 22deg, transparent 58deg);
+      animation: radarSweep 3.6s linear infinite;
+    }
+
+    .radar-sweep::after {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, transparent 0 18%, rgba(46, 74, 39, 0.32) 62%, rgba(46, 74, 39, 0.88) 100%);
+      content: "";
+    }
+
+    .blip {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      background: #fff7df;
+      border: 3px solid #f0d494;
+      border-radius: 50%;
+      box-shadow: 0 0 18px rgba(240, 212, 148, 0.85);
+      animation: blipPulse 2.4s ease-in-out infinite;
+    }
+
+    .blip.one {
+      top: 28%;
+      left: 34%;
+    }
+
+    .blip.two {
+      right: 26%;
+      bottom: 36%;
+      animation-delay: 0.7s;
+    }
+
+    .blip.three {
+      left: 50%;
+      bottom: 24%;
+      animation-delay: 1.3s;
+    }
+
+    .tsuchinoko-target {
+      position: absolute;
+      right: 18%;
+      bottom: 54px;
+      width: 160px;
+      height: 58px;
+      background:
+        radial-gradient(circle at 82% 45%, #fff7df 0 6px, transparent 7px),
+        #9a5a24;
+      border-radius: 56px 78px 64px 48px;
+      box-shadow: inset -22px 0 rgba(0, 0, 0, 0.14);
+      transform-origin: center;
+      animation: targetDrift 4.8s ease-in-out infinite;
+    }
+
+    .tsuchinoko-target::before {
+      position: absolute;
+      top: 21px;
+      left: -24px;
+      width: 48px;
+      height: 25px;
+      background: #9a5a24;
+      border-radius: 25px 0 0 25px;
+      content: "";
+    }
+
+    .radar-readout {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      left: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      color: #fff7df;
+      background: rgba(21, 37, 18, 0.82);
+      border: 1px solid rgba(240, 212, 148, 0.22);
       border-radius: 8px;
+      font-size: 13px;
+      font-weight: 800;
     }
 
-    .door-note strong {
+    .signal-bars {
+      display: flex;
+      align-items: end;
+      gap: 4px;
+      height: 24px;
+    }
+
+    .signal-bars span {
+      width: 8px;
+      background: #f0d494;
+      border-radius: 3px 3px 0 0;
+      opacity: 0.35;
+      transition: opacity 160ms ease, height 160ms ease;
+    }
+
+    .signal-bars span:nth-child(1) {
+      height: 8px;
+    }
+
+    .signal-bars span:nth-child(2) {
+      height: 13px;
+    }
+
+    .signal-bars span:nth-child(3) {
+      height: 18px;
+    }
+
+    .signal-bars span:nth-child(4) {
+      height: 23px;
+    }
+
+    .signal-bars[data-strength="1"] span:nth-child(-n+1),
+    .signal-bars[data-strength="2"] span:nth-child(-n+2),
+    .signal-bars[data-strength="3"] span:nth-child(-n+3),
+    .signal-bars[data-strength="4"] span:nth-child(-n+4) {
+      opacity: 1;
+    }
+
+    @keyframes radarSweep {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes blipPulse {
+      0%,
+      100% {
+        transform: scale(0.82);
+        opacity: 0.5;
+      }
+
+      50% {
+        transform: scale(1.38);
+        opacity: 1;
+      }
+    }
+
+    @keyframes targetDrift {
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(-3deg);
+      }
+
+      50% {
+        transform: translate(-18px, -10px) rotate(4deg);
+      }
+    }
+
+    .field-caption {
+      padding: 18px;
+      color: #fff7df;
+      background: rgba(255, 247, 223, 0.08);
+      border-top: 1px solid rgba(255, 247, 223, 0.12);
+    }
+
+    .field-caption strong {
       display: block;
-      color: #d39d4b;
-      font-size: 18px;
+      color: #f0d494;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: 22px;
     }
 
-    .door-note span {
-      color: #cdbb95;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+    .field-caption span {
+      color: #d9e0c9;
       font-size: 14px;
     }
 
@@ -229,13 +385,14 @@
     }
 
     .section-title {
-      max-width: 780px;
+      max-width: 800px;
       margin: 0 0 30px;
     }
 
     .section-title h2 {
       margin: 0 0 10px;
-      color: #fff4d8;
+      color: #20371c;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
       font-size: clamp(30px, 4vw, 48px);
       line-height: 1.14;
       letter-spacing: 0;
@@ -243,8 +400,7 @@
 
     .section-title p {
       margin: 0;
-      color: #cdbb95;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #586552;
     }
 
     .grid {
@@ -255,145 +411,142 @@
 
     .card {
       padding: 24px;
-      background: rgba(244, 234, 210, 0.08);
-      border: 1px solid rgba(244, 234, 210, 0.15);
+      background: rgba(255, 247, 223, 0.92);
+      border: 1px solid rgba(45, 74, 37, 0.14);
       border-radius: 8px;
-      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 16px 42px rgba(45, 74, 37, 0.08);
     }
 
     .card h3 {
       margin: 0 0 10px;
-      color: #d39d4b;
-      font-size: 22px;
+      color: #2d4a25;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: 23px;
     }
 
     .card p {
       margin: 0;
-      color: #d7c6a5;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #586552;
     }
 
-    .notice-band {
+    .report-band {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
-      color: #15100b;
-      background: #d39d4b;
-      border-top: 1px solid rgba(255, 255, 255, 0.24);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+      color: #fff7df;
+      background: #20371c;
+      border-top: 1px solid rgba(255, 247, 223, 0.18);
+      border-bottom: 1px solid rgba(255, 247, 223, 0.18);
     }
 
-    .notice {
+    .report {
       padding: 28px 7vw 28px 0;
     }
 
-    .notice:first-child {
+    .report:first-child {
       padding-left: 7vw;
     }
 
-    .notice strong {
+    .report strong {
       display: block;
-      font-size: 28px;
+      color: #f0d494;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: 31px;
       line-height: 1.1;
     }
 
-    .notice span {
+    .report span {
       display: block;
       margin-top: 8px;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #d9e0c9;
       font-weight: 800;
     }
 
-    .course-section {
-      background:
-        linear-gradient(rgba(10, 16, 11, 0.9), rgba(10, 16, 11, 0.92)),
-        #0a100b;
+    .sightings {
+      background: #e4e8d6;
     }
 
-    .course-list {
+    .sighting-list {
       display: grid;
       gap: 14px;
       max-width: 980px;
     }
 
-    .course {
+    .sighting {
       display: grid;
       grid-template-columns: 116px 1fr auto;
       gap: 18px;
       align-items: center;
       padding: 18px;
-      background: rgba(244, 234, 210, 0.08);
-      border: 1px solid rgba(244, 234, 210, 0.15);
+      background: #fff7df;
+      border: 1px solid rgba(45, 74, 37, 0.14);
       border-radius: 8px;
     }
 
-    .course-number {
+    .sighting-code {
       display: grid;
       min-height: 76px;
       place-items: center;
-      color: #f4ead2;
-      background: #6b2424;
+      color: #fff7df;
+      background: #9a5a24;
       border-radius: 8px;
-      font-family: Arial, "Hiragino Sans", sans-serif;
       font-weight: 900;
     }
 
-    .course h3 {
+    .sighting h3 {
       margin: 0 0 4px;
-      color: #fff4d8;
+      color: #20371c;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
     }
 
-    .course p {
+    .sighting p {
       margin: 0;
-      color: #cdbb95;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #586552;
     }
 
-    .price {
-      color: #d39d4b;
-      font-family: Arial, "Hiragino Sans", sans-serif;
+    .status {
+      color: #2d4a25;
       font-size: 18px;
       font-weight: 900;
+      white-space: nowrap;
     }
 
-    .steps {
-      background: #171f16;
+    .guide {
+      background: #f7f2e4;
     }
 
-    .step-list {
+    .guide-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
-    .step {
+    .guide-item {
       padding: 24px;
-      color: #15100b;
-      background: #f4ead2;
-      border-left: 6px solid #d39d4b;
+      color: #fff7df;
+      background: #2d4a25;
+      border-left: 6px solid #f0d494;
       border-radius: 8px;
     }
 
-    .step strong {
+    .guide-item strong {
       display: block;
-      color: #6b2424;
-      font-family: Arial, "Hiragino Sans", sans-serif;
+      color: #f0d494;
       font-size: 13px;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
-    .step h3 {
+    .guide-item h3 {
       margin: 8px 0 8px;
-      color: #1f2d20;
-      font-size: 22px;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: 23px;
     }
 
-    .step p {
+    .guide-item p {
       margin: 0;
-      color: #4f4434;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #dce5d2;
     }
 
     .cta {
@@ -401,15 +554,16 @@
       align-items: center;
       justify-content: space-between;
       gap: 26px;
-      color: #fff4d8;
+      color: #fff7df;
       background:
-        linear-gradient(90deg, rgba(107, 36, 36, 0.95), rgba(31, 45, 32, 0.94)),
-        #6b2424;
+        linear-gradient(90deg, rgba(32, 55, 28, 0.96), rgba(154, 90, 36, 0.9)),
+        #20371c;
     }
 
     .cta h2 {
       max-width: 760px;
       margin: 0 0 10px;
+      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
       font-size: clamp(30px, 4vw, 48px);
       line-height: 1.14;
     }
@@ -417,16 +571,14 @@
     .cta p {
       max-width: 650px;
       margin: 0;
-      color: #e8d7b5;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #e7dec6;
     }
 
     .footer {
       padding: 26px 7vw;
-      color: #bda982;
-      background: #0a100b;
-      border-top: 1px solid rgba(244, 234, 210, 0.12);
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
+      color: #66715d;
+      background: #fff7df;
+      border-top: 1px solid rgba(45, 74, 37, 0.14);
       font-size: 14px;
     }
 
@@ -443,26 +595,34 @@
         padding-top: 48px;
       }
 
-      .grid,
-      .notice-band,
-      .step-list {
+      .radar-readout {
         grid-template-columns: 1fr;
       }
 
-      .notice,
-      .notice:first-child {
+      .signal-bars {
+        justify-self: start;
+      }
+
+      .grid,
+      .report-band,
+      .guide-list {
+        grid-template-columns: 1fr;
+      }
+
+      .report,
+      .report:first-child {
         padding: 18px 7vw;
       }
 
-      .course {
+      .sighting {
         grid-template-columns: 1fr;
       }
 
-      .course-number {
+      .sighting-code {
         min-height: 52px;
       }
 
-      .price {
+      .status {
         justify-self: start;
       }
 
@@ -476,168 +636,194 @@
 <body>
   <header class="site-header">
     <a class="brand" href="#">
-      <span class="brand-mark">軒</span>
-      <span>西洋料理店 山猫軒</span>
+      <span class="brand-mark">蛇</span>
+      <span>ツチノコ捜索本部</span>
     </a>
     <nav class="nav" aria-label="メインナビゲーション">
-      <a href="#about">当店について</a>
-      <a href="#menu">献立</a>
-      <a href="#orders">ご注文</a>
-      <a href="#access">ご来店</a>
+      <a href="#mission">捜索方針</a>
+      <a href="#sightings">目撃情報</a>
+      <a href="#guide">参加ガイド</a>
+      <a href="#report">情報提供</a>
     </nav>
   </header>
 
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Restaurant Wildcat House</p>
-        <h1>森の奥で、お客様をお待ちしております。</h1>
+        <p class="eyebrow">Tsuchinoko Search Unit</p>
+        <h1>山の影に残る、短く太い謎を追う。</h1>
         <p>
-          宮沢賢治『注文の多い料理店』に登場する飲食店「山猫軒」を題材にした、
-          架空の公式サイトです。深い森を抜けた先にある、少し奇妙で上品な西洋料理店として再構成しました。
+          ツチノコ捜索本部は、各地に残る目撃談、足跡、草むらの異音を集め、
+          安全第一で未確認生物の痕跡を調査する架空の探索サイトです。
         </p>
         <div class="actions">
-          <a class="button primary" href="#menu">献立を見る</a>
-          <a class="button secondary" href="#orders">ご注文の流れ</a>
+          <a class="button primary" href="#sightings">目撃情報を見る</a>
+          <a class="button secondary" href="#report">情報を送る</a>
         </div>
       </div>
 
-      <div class="door-card" aria-label="山猫軒の入口イメージ">
-        <div class="signboard">
-          <span>Western Restaurant</span>
-          <strong>山猫軒</strong>
+      <div class="field-card" aria-label="動的なツチノコレーダー">
+        <div class="field-top">
+          <span>TSUCHINOKO RADAR</span>
+          <span id="radar-status">Scanning</span>
         </div>
-        <div class="doors">
-          <div class="door-note">
-            <strong>一、森の中ほどで足を止める</strong>
-            <span>霧が濃くなったら、看板の明かりを目印にお進みください。</span>
+        <div class="radar">
+          <div class="radar-screen">
+            <div class="radar-sweep"></div>
+            <div class="blip one"></div>
+            <div class="blip two"></div>
+            <div class="blip three"></div>
           </div>
-          <div class="door-note">
-            <strong>二、扉ごとの案内をよく読む</strong>
-            <span>当店は、お客様にいくつかのお願いを差し上げる場合がございます。</span>
+          <div class="tsuchinoko-target"></div>
+          <div class="radar-readout">
+            <span id="radar-readout">反応強度 72% / 方位 NNE</span>
+            <div class="signal-bars" data-strength="3" aria-label="信号強度">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
-          <div class="door-note">
-            <strong>三、最後の部屋で席へご案内</strong>
-            <span>銀のナイフと白い皿をそろえて、静かにお迎えいたします。</span>
-          </div>
+        </div>
+        <div class="field-caption">
+          <strong>動体反応: 朽木沢 北北東</strong>
+          <span>周期的な反応を検出中。近づかず、距離を保って観察してください。</span>
         </div>
       </div>
     </section>
 
-    <section id="about">
+    <section id="mission">
       <div class="section-title">
-        <h2>紳士淑女のための、森の洋食店。</h2>
+        <h2>見つけるより先に、山を荒らさない。</h2>
         <p>
-          山猫軒は、山歩きの途中にふいに現れる一軒家。
-          優雅な食卓と、どこか不穏なもてなしを味わえる物語仕立てのレストランです。
+          捜索は観察、記録、共有を基本にします。
+          捕獲を目的にせず、地域の自然と暮らしを守りながら、噂の正体へ少しずつ近づきます。
         </p>
       </div>
       <div class="grid">
         <article class="card">
-          <h3>森深いロケーション</h3>
-          <p>木立の影、遠い風音、古びた看板。到着までの道のりも体験の一部です。</p>
+          <h3>目撃談の整理</h3>
+          <p>日時、天候、場所、動き方を記録し、類似報告を地図上で照合します。</p>
         </article>
         <article class="card">
-          <h3>注文の多い接客</h3>
-          <p>帽子、靴、香り、身だしなみ。扉を進むたびに、店からの案内が現れます。</p>
+          <h3>痕跡の観察</h3>
+          <p>足跡、草の倒れ方、抜け殻らしきものなどを採取せず写真で残します。</p>
         </article>
         <article class="card">
-          <h3>物語を味わう献立</h3>
-          <p>クラシックな西洋料理を、童話の緊張感と森の香りで演出します。</p>
+          <h3>安全な探索</h3>
+          <p>単独行動を避け、私有地に入らず、野生動物を刺激しないことを徹底します。</p>
         </article>
       </div>
     </section>
 
-    <section class="notice-band" aria-label="店舗情報">
-      <div class="notice">
-        <strong>日没前</strong>
-        <span>入店推奨時刻</span>
+    <section class="report-band" aria-label="捜索状況">
+      <div class="report">
+        <strong>128件</strong>
+        <span>累計目撃投稿</span>
       </div>
-      <div class="notice">
-        <strong>7枚</strong>
-        <span>案内扉の数</span>
+      <div class="report">
+        <strong>17地点</strong>
+        <span>重点観察エリア</span>
       </div>
-      <div class="notice">
-        <strong>要読了</strong>
-        <span>各扉の注意書き</span>
+      <div class="report">
+        <strong>0件</strong>
+        <span>捕獲実績</span>
       </div>
-      <div class="notice">
-        <strong>森奥</strong>
-        <span>詳しい住所は非公開</span>
+      <div class="report">
+        <strong>毎月</strong>
+        <span>公開調査会</span>
       </div>
     </section>
 
-    <section id="menu" class="course-section">
+    <section id="sightings" class="sightings">
       <div class="section-title">
-        <h2>本日のおすすめ</h2>
-        <p>山歩きのあとに似合う、香り高い洋食をご用意しました。</p>
+        <h2>最近の目撃情報</h2>
+        <p>確度は調査中です。似た特徴を見かけた場合は、無理に近づかず記録を残してください。</p>
       </div>
-      <div class="course-list">
-        <article class="course">
-          <div class="course-number">Course 01</div>
+      <div class="sighting-list">
+        <article class="sighting">
+          <div class="sighting-code">S-041</div>
           <div>
-            <h3>森番のビーフシチュー</h3>
-            <p>赤ワインと香味野菜でじっくり煮込んだ、深い色合いの一皿。</p>
+            <h3>茶色い胴体が側溝へ消えた</h3>
+            <p>夕方、農道脇で短く太い影を確認。移動速度が速く、撮影は失敗。</p>
           </div>
-          <span class="price">2,400円</span>
+          <span class="status">調査中</span>
         </article>
-        <article class="course">
-          <div class="course-number">Course 02</div>
+        <article class="sighting">
+          <div class="sighting-code">S-042</div>
           <div>
-            <h3>山鳥風ローストプレート</h3>
-            <p>香草、焦がしバター、野生味のあるソースを合わせた看板料理。</p>
+            <h3>落ち葉に幅広いこすれ跡</h3>
+            <p>沢沿いの斜面で発見。足跡は不明瞭だが、周辺に小動物の気配あり。</p>
           </div>
-          <span class="price">2,900円</span>
+          <span class="status">要再訪</span>
         </article>
-        <article class="course">
-          <div class="course-number">Course 03</div>
+        <article class="sighting">
+          <div class="sighting-code">S-043</div>
           <div>
-            <h3>白い扉のデザート</h3>
-            <p>クリーム、洋梨、ナッツを重ねた、最後の部屋にふさわしい甘味。</p>
+            <h3>石垣の下から鳴き声らしき音</h3>
+            <p>短い破裂音のような鳴き声を複数名が確認。録音データを解析中。</p>
           </div>
-          <span class="price">1,100円</span>
+          <span class="status">解析中</span>
         </article>
       </div>
     </section>
 
-    <section id="orders" class="steps">
+    <section id="guide" class="guide">
       <div class="section-title">
-        <h2>ご注文の流れ</h2>
-        <p>当店では、席に着くまでの一つひとつの手順も大切なサービスです。</p>
+        <h2>参加ガイド</h2>
+        <p>探索はイベントではなく調査です。現地では安全とマナーを最優先にしてください。</p>
       </div>
-      <div class="step-list">
-        <article class="step">
-          <strong>Step 1</strong>
-          <h3>看板を見つける</h3>
-          <p>山道で迷われたお客様は、金色の文字が光る看板をお探しください。</p>
+      <div class="guide-list">
+        <article class="guide-item">
+          <strong>Rule 01</strong>
+          <h3>見つけても追わない</h3>
+          <p>接近や捕獲はせず、距離を保って場所と時刻を記録してください。</p>
         </article>
-        <article class="step">
-          <strong>Step 2</strong>
-          <h3>身なりを整える</h3>
-          <p>扉の案内に従い、帽子や外套、余分な荷物を順にお預けください。</p>
+        <article class="guide-item">
+          <strong>Rule 02</strong>
+          <h3>写真は周辺も写す</h3>
+          <p>対象だけでなく、道、石、草木など位置特定に役立つものも撮影します。</p>
         </article>
-        <article class="step">
-          <strong>Step 3</strong>
-          <h3>奥の間へ進む</h3>
-          <p>最後の扉の先で、当店自慢の料理と静かな食卓をお楽しみください。</p>
+        <article class="guide-item">
+          <strong>Rule 03</strong>
+          <h3>地域に迷惑をかけない</h3>
+          <p>私有地、畑、神社林、立入禁止区域には入らないでください。</p>
         </article>
       </div>
     </section>
 
-    <section id="access" class="cta">
+    <section id="report" class="cta">
       <div>
-        <h2>お腹をすかせたお客様を、歓迎いたします。</h2>
+        <h2>その一瞬の違和感が、次の手がかりです。</h2>
         <p>
-          山猫軒は物語の中にある架空の飲食店です。
-          このページは『注文の多い料理店』の世界観をもとにしたサンプルWebサイトです。
+          目撃情報、写真、音声、古い聞き書きなどを受け付けています。
+          このWebサイトは架空のツチノコ捜索団体を題材にしたサンプルページです。
         </p>
       </div>
-      <a class="button primary" href="mailto:info@yamaneko-ken.example">予約の相談</a>
+      <a class="button primary" href="mailto:report@tsuchinoko-search.example">情報提供する</a>
     </section>
   </main>
 
   <footer class="footer">
-    <small>&copy; 2026 西洋料理店 山猫軒. 宮沢賢治『注文の多い料理店』に着想を得た架空サイトです。</small>
+    <small>&copy; 2026 ツチノコ捜索本部. 架空の未確認生物調査サイトです。</small>
   </footer>
+  <script>
+    const readout = document.querySelector("#radar-readout");
+    const status = document.querySelector("#radar-status");
+    const bars = document.querySelector(".signal-bars");
+    const directions = ["NNE", "NE", "ENE", "E", "ESE", "SE"];
+    let tick = 0;
+
+    setInterval(() => {
+      tick += 1;
+      const strength = 58 + Math.round(Math.sin(tick * 0.9) * 18 + Math.random() * 10);
+      const barLevel = Math.max(1, Math.min(4, Math.ceil(strength / 25)));
+      const direction = directions[tick % directions.length];
+
+      readout.textContent = `反応強度 ${strength}% / 方位 ${direction}`;
+      status.textContent = strength > 78 ? "Strong signal" : "Scanning";
+      bars.dataset.strength = String(barLevel);
+    }, 1400);
+  </script>
 </body>
 </html>
