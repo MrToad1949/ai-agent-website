@@ -3,669 +3,124 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ツチノコ捜索本部</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: #23311f;
-      background: #f3efe2;
-      font-family: Arial, "Hiragino Sans", "Yu Gothic", sans-serif;
-      line-height: 1.7;
-    }
-
-    body::before {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      content: "";
-      background:
-        linear-gradient(rgba(243, 239, 226, 0.9), rgba(243, 239, 226, 0.97)),
-        radial-gradient(circle at 80% 18%, rgba(170, 115, 54, 0.22), transparent 30%),
-        repeating-linear-gradient(110deg, rgba(45, 74, 37, 0.06) 0 2px, transparent 2px 70px),
-        linear-gradient(135deg, #f5eed9, #dfe7d0 56%, #c6d4b2);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 18px 7vw;
-      background: rgba(243, 239, 226, 0.9);
-      border-bottom: 1px solid rgba(45, 74, 37, 0.16);
-      backdrop-filter: blur(14px);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-    }
-
-    .brand-mark {
-      display: grid;
-      width: 42px;
-      height: 42px;
-      place-items: center;
-      color: #fff7df;
-      background: #2d4a25;
-      border: 1px solid rgba(255, 255, 255, 0.42);
-      border-radius: 8px;
-      font-weight: 900;
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      color: #59654f;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
-      gap: 56px;
-      align-items: center;
-      min-height: 78vh;
-      padding: 78px 7vw 62px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 18px;
-      color: #9a5a24;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      width: 34px;
-      height: 1px;
-      background: #9a5a24;
-      content: "";
-    }
-
-    .hero h1 {
-      max-width: 780px;
-      margin: 0 0 20px;
-      color: #20371c;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: clamp(44px, 7vw, 86px);
-      line-height: 1.04;
-      letter-spacing: 0;
-    }
-
-    .hero p {
-      max-width: 660px;
-      margin: 0 0 30px;
-      color: #586552;
-      font-size: 18px;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 900;
-      transition: transform 160ms ease, box-shadow 160ms ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button.primary {
-      color: #fff7df;
-      background: #2d4a25;
-      box-shadow: 0 18px 38px rgba(45, 74, 37, 0.2);
-    }
-
-    .button.secondary {
-      color: #2d4a25;
-      background: rgba(255, 247, 223, 0.88);
-      border: 1px solid rgba(45, 74, 37, 0.24);
-    }
-
-    .field-card {
-      overflow: hidden;
-      background: #21351c;
-      border: 1px solid rgba(255, 247, 223, 0.18);
-      border-radius: 8px;
-      box-shadow: 0 30px 90px rgba(45, 74, 37, 0.28);
-    }
-
-    .field-top {
-      display: flex;
-      justify-content: space-between;
-      padding: 14px 16px;
-      color: #f0d494;
-      background: #152512;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .radar {
-      position: relative;
-      display: grid;
-      min-height: 360px;
-      place-items: center;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at center, rgba(240, 212, 148, 0.12), transparent 34%),
-        repeating-linear-gradient(0deg, rgba(255, 247, 223, 0.07) 0 1px, transparent 1px 36px),
-        repeating-linear-gradient(90deg, rgba(255, 247, 223, 0.06) 0 1px, transparent 1px 36px),
-        #2e4a27;
-    }
-
-    .radar-screen {
-      position: absolute;
-      width: min(78%, 310px);
-      aspect-ratio: 1;
-      border: 2px solid rgba(240, 212, 148, 0.7);
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at center, rgba(240, 212, 148, 0.18) 0 2px, transparent 3px),
-        repeating-radial-gradient(circle at center, transparent 0 48px, rgba(240, 212, 148, 0.34) 49px 51px),
-        linear-gradient(90deg, transparent 49.6%, rgba(240, 212, 148, 0.28) 49.6% 50.4%, transparent 50.4%),
-        linear-gradient(0deg, transparent 49.6%, rgba(240, 212, 148, 0.28) 49.6% 50.4%, transparent 50.4%);
-      box-shadow:
-        inset 0 0 34px rgba(240, 212, 148, 0.18),
-        0 0 34px rgba(240, 212, 148, 0.12);
-    }
-
-    .radar-sweep {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, rgba(240, 212, 148, 0.64), rgba(240, 212, 148, 0.18) 22deg, transparent 58deg);
-      animation: radarSweep 3.6s linear infinite;
-    }
-
-    .radar-sweep::after {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, transparent 0 18%, rgba(46, 74, 39, 0.32) 62%, rgba(46, 74, 39, 0.88) 100%);
-      content: "";
-    }
-
-    .blip {
-      position: absolute;
-      width: 13px;
-      height: 13px;
-      background: #fff7df;
-      border: 3px solid #f0d494;
-      border-radius: 50%;
-      box-shadow: 0 0 18px rgba(240, 212, 148, 0.85);
-      animation: blipPulse 2.4s ease-in-out infinite;
-    }
-
-    .blip.one {
-      top: 28%;
-      left: 34%;
-    }
-
-    .blip.two {
-      right: 26%;
-      bottom: 36%;
-      animation-delay: 0.7s;
-    }
-
-    .blip.three {
-      left: 50%;
-      bottom: 24%;
-      animation-delay: 1.3s;
-    }
-
-    .tsuchinoko-target {
-      position: absolute;
-      right: 18%;
-      bottom: 54px;
-      width: 160px;
-      height: 58px;
-      background:
-        radial-gradient(circle at 82% 45%, #fff7df 0 6px, transparent 7px),
-        #9a5a24;
-      border-radius: 56px 78px 64px 48px;
-      box-shadow: inset -22px 0 rgba(0, 0, 0, 0.14);
-      transform-origin: center;
-      animation: targetDrift 4.8s ease-in-out infinite;
-    }
-
-    .tsuchinoko-target::before {
-      position: absolute;
-      top: 21px;
-      left: -24px;
-      width: 48px;
-      height: 25px;
-      background: #9a5a24;
-      border-radius: 25px 0 0 25px;
-      content: "";
-    }
-
-    .radar-readout {
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      left: 18px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      color: #fff7df;
-      background: rgba(21, 37, 18, 0.82);
-      border: 1px solid rgba(240, 212, 148, 0.22);
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .signal-bars {
-      display: flex;
-      align-items: end;
-      gap: 4px;
-      height: 24px;
-    }
-
-    .signal-bars span {
-      width: 8px;
-      background: #f0d494;
-      border-radius: 3px 3px 0 0;
-      opacity: 0.35;
-      transition: opacity 160ms ease, height 160ms ease;
-    }
-
-    .signal-bars span:nth-child(1) {
-      height: 8px;
-    }
-
-    .signal-bars span:nth-child(2) {
-      height: 13px;
-    }
-
-    .signal-bars span:nth-child(3) {
-      height: 18px;
-    }
-
-    .signal-bars span:nth-child(4) {
-      height: 23px;
-    }
-
-    .signal-bars[data-strength="1"] span:nth-child(-n+1),
-    .signal-bars[data-strength="2"] span:nth-child(-n+2),
-    .signal-bars[data-strength="3"] span:nth-child(-n+3),
-    .signal-bars[data-strength="4"] span:nth-child(-n+4) {
-      opacity: 1;
-    }
-
-    @keyframes radarSweep {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes blipPulse {
-      0%,
-      100% {
-        transform: scale(0.82);
-        opacity: 0.5;
-      }
-
-      50% {
-        transform: scale(1.38);
-        opacity: 1;
-      }
-    }
-
-    @keyframes targetDrift {
-      0%,
-      100% {
-        transform: translate(0, 0) rotate(-3deg);
-      }
-
-      50% {
-        transform: translate(-18px, -10px) rotate(4deg);
-      }
-    }
-
-    .field-caption {
-      padding: 18px;
-      color: #fff7df;
-      background: rgba(255, 247, 223, 0.08);
-      border-top: 1px solid rgba(255, 247, 223, 0.12);
-    }
-
-    .field-caption strong {
-      display: block;
-      color: #f0d494;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: 22px;
-    }
-
-    .field-caption span {
-      color: #d9e0c9;
-      font-size: 14px;
-    }
-
-    section {
-      padding: 74px 7vw;
-    }
-
-    .section-title {
-      max-width: 800px;
-      margin: 0 0 30px;
-    }
-
-    .section-title h2 {
-      margin: 0 0 10px;
-      color: #20371c;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.14;
-      letter-spacing: 0;
-    }
-
-    .section-title p {
-      margin: 0;
-      color: #586552;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .card {
-      padding: 24px;
-      background: rgba(255, 247, 223, 0.92);
-      border: 1px solid rgba(45, 74, 37, 0.14);
-      border-radius: 8px;
-      box-shadow: 0 16px 42px rgba(45, 74, 37, 0.08);
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      color: #2d4a25;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: 23px;
-    }
-
-    .card p {
-      margin: 0;
-      color: #586552;
-    }
-
-    .report-band {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-      color: #fff7df;
-      background: #20371c;
-      border-top: 1px solid rgba(255, 247, 223, 0.18);
-      border-bottom: 1px solid rgba(255, 247, 223, 0.18);
-    }
-
-    .report {
-      padding: 28px 7vw 28px 0;
-    }
-
-    .report:first-child {
-      padding-left: 7vw;
-    }
-
-    .report strong {
-      display: block;
-      color: #f0d494;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: 31px;
-      line-height: 1.1;
-    }
-
-    .report span {
-      display: block;
-      margin-top: 8px;
-      color: #d9e0c9;
-      font-weight: 800;
-    }
-
-    .sightings {
-      background: #e4e8d6;
-    }
-
-    .sighting-list {
-      display: grid;
-      gap: 14px;
-      max-width: 980px;
-    }
-
-    .sighting {
-      display: grid;
-      grid-template-columns: 116px 1fr auto;
-      gap: 18px;
-      align-items: center;
-      padding: 18px;
-      background: #fff7df;
-      border: 1px solid rgba(45, 74, 37, 0.14);
-      border-radius: 8px;
-    }
-
-    .sighting-code {
-      display: grid;
-      min-height: 76px;
-      place-items: center;
-      color: #fff7df;
-      background: #9a5a24;
-      border-radius: 8px;
-      font-weight: 900;
-    }
-
-    .sighting h3 {
-      margin: 0 0 4px;
-      color: #20371c;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-    }
-
-    .sighting p {
-      margin: 0;
-      color: #586552;
-    }
-
-    .status {
-      color: #2d4a25;
-      font-size: 18px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .guide {
-      background: #f7f2e4;
-    }
-
-    .guide-list {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .guide-item {
-      padding: 24px;
-      color: #fff7df;
-      background: #2d4a25;
-      border-left: 6px solid #f0d494;
-      border-radius: 8px;
-    }
-
-    .guide-item strong {
-      display: block;
-      color: #f0d494;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .guide-item h3 {
-      margin: 8px 0 8px;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: 23px;
-    }
-
-    .guide-item p {
-      margin: 0;
-      color: #dce5d2;
-    }
-
-    .cta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 26px;
-      color: #fff7df;
-      background:
-        linear-gradient(90deg, rgba(32, 55, 28, 0.96), rgba(154, 90, 36, 0.9)),
-        #20371c;
-    }
-
-    .cta h2 {
-      max-width: 760px;
-      margin: 0 0 10px;
-      font-family: Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.14;
-    }
-
-    .cta p {
-      max-width: 650px;
-      margin: 0;
-      color: #e7dec6;
-    }
-
-    .footer {
-      padding: 26px 7vw;
-      color: #66715d;
-      background: #fff7df;
-      border-top: 1px solid rgba(45, 74, 37, 0.14);
-      font-size: 14px;
-    }
-
-    @media (max-width: 880px) {
-      .site-header {
-        position: static;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        min-height: auto;
-        padding-top: 48px;
-      }
-
-      .radar-readout {
-        grid-template-columns: 1fr;
-      }
-
-      .signal-bars {
-        justify-self: start;
-      }
-
-      .grid,
-      .report-band,
-      .guide-list {
-        grid-template-columns: 1fr;
-      }
-
-      .report,
-      .report:first-child {
-        padding: 18px 7vw;
-      }
-
-      .sighting {
-        grid-template-columns: 1fr;
-      }
-
-      .sighting-code {
-        min-height: 52px;
-      }
-
-      .status {
-        justify-self: start;
-      }
-
-      .cta {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-    }
-  </style>
+  <title>ツチノコ目撃情報連絡窓口</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="#">
-      <span class="brand-mark">蛇</span>
-      <span>ツチノコ捜索本部</span>
-    </a>
-    <nav class="nav" aria-label="メインナビゲーション">
-      <a href="#mission">捜索方針</a>
-      <a href="#sightings">目撃情報</a>
-      <a href="#guide">参加ガイド</a>
-      <a href="#report">情報提供</a>
-    </nav>
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark">未</span>
+        <span>
+          <span class="brand-title">ツチノコ目撃情報連絡窓口</span>
+          <span class="brand-subtitle">地域自然観察・未確認生物情報の整理</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="メインナビゲーション">
+        <a href="#about">概要</a>
+        <a href="#status">受付状況</a>
+        <a href="#mascot">マスコット</a>
+        <a href="#records">公表情報</a>
+        <a href="#guide">情報提供のお願い</a>
+        <a href="#contact">連絡先</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Tsuchinoko Search Unit</p>
-        <h1>山の影に残る、短く太い謎を追う。</h1>
+    <section class="hero" id="about">
+      <div class="hero-text">
+        <p class="eyebrow">公開情報ページ</p>
+        <h1>ツチノコに関する目撃情報を、記録として整理しています。</h1>
         <p>
-          ツチノコ捜索本部は、各地に残る目撃談、足跡、草むらの異音を集め、
-          安全第一で未確認生物の痕跡を調査する架空の探索サイトです。
+          本窓口では、各地に伝わるツチノコの目撃談や関連する自然観察記録を受け付け、
+          安全確認、重複整理、地域環境への配慮を前提に情報を公開しています。
         </p>
-        <div class="actions">
-          <a class="button primary" href="#sightings">目撃情報を見る</a>
-          <a class="button secondary" href="#report">情報を送る</a>
+        <div class="actions" aria-label="主要リンク">
+          <a class="button primary" href="#guide">情報提供の方法</a>
+          <a class="button secondary" href="#records">公表情報を見る</a>
         </div>
       </div>
 
-      <div class="field-card" aria-label="動的なツチノコレーダー">
-        <div class="field-top">
-          <span>TSUCHINOKO RADAR</span>
-          <span id="radar-status">Scanning</span>
+      <div class="image-panel">
+        <button class="image-zoom" type="button" aria-haspopup="dialog" aria-controls="image-modal">
+          <img src="tsuchinoko.png" alt="落ち葉の上にいるツチノコのイメージ画像">
+          <span class="zoom-hint" aria-hidden="true">拡大</span>
+        </button>
+        <p class="image-note">画像はイメージです。</p>
+      </div>
+    </section>
+
+    <section class="section" id="status">
+      <div class="section-title">
+        <p class="eyebrow">Status</p>
+        <h2>受付状況</h2>
+        <p>寄せられた情報は、地域の自然観察資料として整理します。</p>
+      </div>
+
+      <div class="stats" aria-label="受付状況の概要">
+        <div class="stat">
+          <strong>128件</strong>
+          <span>累計受付件数</span>
+        </div>
+        <div class="stat">
+          <strong>17地域</strong>
+          <span>確認対象地域</span>
+        </div>
+        <div class="stat">
+          <strong>0件</strong>
+          <span>捕獲・採取の要請</span>
+        </div>
+        <div class="stat">
+          <strong>月1回</strong>
+          <span>記録整理の更新</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section muted" id="mascot">
+      <div class="section-title">
+        <p class="eyebrow">Mascot</p>
+        <h2>マスコットキャラクター</h2>
+        <p>目撃情報の記録や自然観察への関心を、親しみやすく伝えるための案内役です。</p>
+      </div>
+
+      <div class="mascot-card">
+        <div class="mascot-image">
+          <img src="tsucchi.png" alt="マスコットキャラクター つっちー">
+        </div>
+        <div class="mascot-profile">
+          <p class="eyebrow">Official Mascot</p>
+          <h3>つっちー</h3>
+          <p>
+            地域の自然や昔からの言い伝えに関心を持ってもらうためのマスコットです。
+            情報提供時の注意点や記録の残し方を、分かりやすく案内します。
+          </p>
+          <dl class="mascot-detail-list">
+            <div>
+              <dt>役割</dt>
+              <dd>自然観察と情報整理の案内</dd>
+            </div>
+            <div>
+              <dt>特徴</dt>
+              <dd>丸い体と背中の斑点</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section muted" aria-label="参考監視表示">
+      <div class="section-title">
+        <p class="eyebrow">Monitoring</p>
+        <h2>参考監視表示</h2>
+        <p>目撃情報の集中状況を確認するための参考表示です。</p>
+      </div>
+
+      <div class="monitor">
+        <div class="monitor-header">
+          <span>参考表示</span>
+          <span id="radar-status">確認中</span>
         </div>
         <div class="radar">
           <div class="radar-screen">
@@ -674,10 +129,9 @@
             <div class="blip two"></div>
             <div class="blip three"></div>
           </div>
-          <div class="tsuchinoko-target"></div>
           <div class="radar-readout">
-            <span id="radar-readout">反応強度 72% / 方位 NNE</span>
-            <div class="signal-bars" data-strength="3" aria-label="信号強度">
+            <span id="radar-readout">受付集中度 72% / 区分 北東部</span>
+            <div class="signal-bars" data-strength="3" aria-label="受付集中度">
               <span></span>
               <span></span>
               <span></span>
@@ -685,145 +139,131 @@
             </div>
           </div>
         </div>
-        <div class="field-caption">
-          <strong>動体反応: 朽木沢 北北東</strong>
-          <span>周期的な反応を検出中。近づかず、距離を保って観察してください。</span>
-        </div>
+        <p class="monitor-note">受付内容の整理に使用する表示です。</p>
       </div>
     </section>
 
-    <section id="mission">
+    <section class="section" id="records">
       <div class="section-title">
-        <h2>見つけるより先に、山を荒らさない。</h2>
-        <p>
-          捜索は観察、記録、共有を基本にします。
-          捕獲を目的にせず、地域の自然と暮らしを守りながら、噂の正体へ少しずつ近づきます。
-        </p>
+        <p class="eyebrow">Records</p>
+        <h2>公表中の主な記録</h2>
+        <p>個人情報、詳細住所、私有地が特定される情報は掲載していません。</p>
       </div>
-      <div class="grid">
-        <article class="card">
-          <h3>目撃談の整理</h3>
-          <p>日時、天候、場所、動き方を記録し、類似報告を地図上で照合します。</p>
+
+      <div class="record-list">
+        <article class="record" data-record-id="s041" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="record-modal">
+          <div class="record-code">S-041</div>
+          <div>
+            <h3>農道脇で短く太い影を確認</h3>
+            <p>夕方に茶色い胴体状の影を見たとの報告。写真はなく、周辺状況を確認中です。</p>
+          </div>
+          <span class="status">確認中</span>
         </article>
-        <article class="card">
-          <h3>痕跡の観察</h3>
-          <p>足跡、草の倒れ方、抜け殻らしきものなどを採取せず写真で残します。</p>
+        <article class="record" data-record-id="s042" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="record-modal">
+          <div class="record-code">S-042</div>
+          <div>
+            <h3>沢沿いで幅広いこすれ跡を確認</h3>
+            <p>落ち葉の上に連続したこすれ跡があったとの報告。自然要因を含めて整理しています。</p>
+          </div>
+          <span class="status">再確認予定</span>
         </article>
-        <article class="card">
-          <h3>安全な探索</h3>
-          <p>単独行動を避け、私有地に入らず、野生動物を刺激しないことを徹底します。</p>
+        <article class="record" data-record-id="s043" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="record-modal">
+          <div class="record-code">S-043</div>
+          <div>
+            <h3>石垣付近で不明な音を聞いたとの報告</h3>
+            <p>複数名から音に関する情報提供があり、録音データの有無を確認しています。</p>
+          </div>
+          <span class="status">資料整理中</span>
         </article>
       </div>
     </section>
 
-    <section class="report-band" aria-label="捜索状況">
-      <div class="report">
-        <strong>128件</strong>
-        <span>累計目撃投稿</span>
-      </div>
-      <div class="report">
-        <strong>17地点</strong>
-        <span>重点観察エリア</span>
-      </div>
-      <div class="report">
-        <strong>0件</strong>
-        <span>捕獲実績</span>
-      </div>
-      <div class="report">
-        <strong>毎月</strong>
-        <span>公開調査会</span>
-      </div>
-    </section>
-
-    <section id="sightings" class="sightings">
+    <section class="section muted" id="guide">
       <div class="section-title">
-        <h2>最近の目撃情報</h2>
-        <p>確度は調査中です。似た特徴を見かけた場合は、無理に近づかず記録を残してください。</p>
+        <p class="eyebrow">Guidance</p>
+        <h2>情報提供時のお願い</h2>
+        <p>安全確保と地域への配慮を優先して記録してください。</p>
       </div>
-      <div class="sighting-list">
-        <article class="sighting">
-          <div class="sighting-code">S-041</div>
-          <div>
-            <h3>茶色い胴体が側溝へ消えた</h3>
-            <p>夕方、農道脇で短く太い影を確認。移動速度が速く、撮影は失敗。</p>
-          </div>
-          <span class="status">調査中</span>
-        </article>
-        <article class="sighting">
-          <div class="sighting-code">S-042</div>
-          <div>
-            <h3>落ち葉に幅広いこすれ跡</h3>
-            <p>沢沿いの斜面で発見。足跡は不明瞭だが、周辺に小動物の気配あり。</p>
-          </div>
-          <span class="status">要再訪</span>
-        </article>
-        <article class="sighting">
-          <div class="sighting-code">S-043</div>
-          <div>
-            <h3>石垣の下から鳴き声らしき音</h3>
-            <p>短い破裂音のような鳴き声を複数名が確認。録音データを解析中。</p>
-          </div>
-          <span class="status">解析中</span>
-        </article>
-      </div>
-    </section>
 
-    <section id="guide" class="guide">
-      <div class="section-title">
-        <h2>参加ガイド</h2>
-        <p>探索はイベントではなく調査です。現地では安全とマナーを最優先にしてください。</p>
-      </div>
       <div class="guide-list">
         <article class="guide-item">
-          <strong>Rule 01</strong>
-          <h3>見つけても追わない</h3>
-          <p>接近や捕獲はせず、距離を保って場所と時刻を記録してください。</p>
+          <h3>場所と時刻を記録する</h3>
+          <p>市町村名、周辺の目印、確認した時刻、天候を可能な範囲で記録してください。</p>
         </article>
         <article class="guide-item">
-          <strong>Rule 02</strong>
-          <h3>写真は周辺も写す</h3>
-          <p>対象だけでなく、道、石、草木など位置特定に役立つものも撮影します。</p>
+          <h3>写真は周囲も含める</h3>
+          <p>対象物だけでなく、道、草木、石、斜面など、環境が分かる構図が有用です。</p>
         </article>
         <article class="guide-item">
-          <strong>Rule 03</strong>
-          <h3>地域に迷惑をかけない</h3>
-          <p>私有地、畑、神社林、立入禁止区域には入らないでください。</p>
+          <h3>立入禁止区域に入らない</h3>
+          <p>私有地、農地、神社林、保護区域には入らず、地域の生活環境を尊重してください。</p>
         </article>
       </div>
     </section>
 
-    <section id="report" class="cta">
+    <section class="section contact" id="contact">
       <div>
-        <h2>その一瞬の違和感が、次の手がかりです。</h2>
+        <p class="eyebrow">Contact</p>
+        <h2>情報提供・問い合わせ</h2>
         <p>
-          目撃情報、写真、音声、古い聞き書きなどを受け付けています。
-          このWebサイトは架空のツチノコ捜索団体を題材にしたサンプルページです。
+          目撃情報、写真、音声、聞き書き資料などを受け付けています。
+          提供内容は個人が特定されない形で整理します。
         </p>
       </div>
-      <a class="button primary" href="mailto:report@tsuchinoko-search.example">情報提供する</a>
+      <button class="button primary" id="report-button" type="button">情報提供する</button>
     </section>
+
+    <aside class="site-note" aria-label="サイト注記">
+      <span>このページは架空のサンプルWebサイトです。</span>
+    </aside>
   </main>
 
+  <div class="image-modal" id="image-modal" role="dialog" aria-modal="true" aria-label="画像の拡大表示" hidden>
+    <button class="modal-close" type="button" aria-label="拡大画像を閉じる">閉じる</button>
+    <div class="modal-image-frame">
+      <img src="tsuchinoko.png" alt="落ち葉の上にいるツチノコのイメージ画像">
+      <p>画像はイメージです。</p>
+    </div>
+  </div>
+
+  <div class="notice-modal" id="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title" hidden>
+    <div class="notice-dialog">
+      <h2 id="report-modal-title">受付一時停止のお知らせ</h2>
+      <p>
+        現在、多くの情報が寄せられているため、情報提供の受付を一時停止しています。
+        受付再開までしばらくお待ちください。
+      </p>
+      <button class="button primary" id="report-modal-close" type="button">閉じる</button>
+    </div>
+  </div>
+
+  <div class="notice-modal" id="record-modal" role="dialog" aria-modal="true" aria-labelledby="record-modal-title" hidden>
+    <div class="notice-dialog record-dialog">
+      <p class="eyebrow" id="record-modal-code"></p>
+      <h2 id="record-modal-title"></h2>
+      <p id="record-modal-summary"></p>
+      <dl class="record-detail-list">
+        <div>
+          <dt>受付状況</dt>
+          <dd id="record-modal-status"></dd>
+        </div>
+        <div>
+          <dt>確認場所</dt>
+          <dd id="record-modal-location"></dd>
+        </div>
+        <div>
+          <dt>確認内容</dt>
+          <dd id="record-modal-detail"></dd>
+        </div>
+      </dl>
+      <button class="button primary" id="record-modal-close" type="button">閉じる</button>
+    </div>
+  </div>
+
   <footer class="footer">
-    <small>&copy; 2026 ツチノコ捜索本部. 架空の未確認生物調査サイトです。</small>
+    <small>&copy; 2026 ツチノコ目撃情報連絡窓口.</small>
   </footer>
-  <script>
-    const readout = document.querySelector("#radar-readout");
-    const status = document.querySelector("#radar-status");
-    const bars = document.querySelector(".signal-bars");
-    const directions = ["NNE", "NE", "ENE", "E", "ESE", "SE"];
-    let tick = 0;
 
-    setInterval(() => {
-      tick += 1;
-      const strength = 58 + Math.round(Math.sin(tick * 0.9) * 18 + Math.random() * 10);
-      const barLevel = Math.max(1, Math.min(4, Math.ceil(strength / 25)));
-      const direction = directions[tick % directions.length];
-
-      readout.textContent = `反応強度 ${strength}% / 方位 ${direction}`;
-      status.textContent = strength > 78 ? "Strong signal" : "Scanning";
-      bars.dataset.strength = String(barLevel);
-    }, 1400);
-  </script>
+  <script src="script.js" defer></script>
 </body>
 </html>
