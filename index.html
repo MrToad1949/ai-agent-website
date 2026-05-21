@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ツチノコ目撃情報連絡窓口</title>
+  <title>ツチノコ捕獲調査会</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,16 +12,16 @@
       <a class="brand" href="#">
         <span class="brand-mark">未</span>
         <span>
-          <span class="brand-title">ツチノコ目撃情報連絡窓口</span>
-          <span class="brand-subtitle">地域自然観察・未確認生物情報の整理</span>
+          <span class="brand-title">ツチノコ捕獲調査会</span>
+          <span class="brand-subtitle">目撃情報にもとづく捕獲調査活動</span>
         </span>
       </a>
       <nav class="nav" aria-label="メインナビゲーション">
         <a href="#about">概要</a>
-        <a href="#status">受付状況</a>
+        <a href="#status">捕獲調査状況</a>
         <a href="#mascot">マスコット</a>
         <a href="#records">公表情報</a>
-        <a href="#guide">情報提供のお願い</a>
+        <a href="#guide">捕獲協力のお願い</a>
         <a href="#contact">連絡先</a>
       </nav>
     </div>
@@ -31,10 +31,10 @@
     <section class="hero" id="about">
       <div class="hero-text">
         <p class="eyebrow">公開情報ページ</p>
-        <h1>ツチノコに関する目撃情報を、記録として整理しています。</h1>
+        <h1>ツチノコの発見と捕獲を目的に、目撃情報を集めています。</h1>
         <p>
-          本窓口では、各地に伝わるツチノコの目撃談や関連する自然観察記録を受け付け、
-          安全確認、重複整理、地域環境への配慮を前提に情報を公開しています。
+          本会では、各地に伝わるツチノコの目撃談、痕跡、写真、音声を受け付け、
+          捕獲候補地の選定、現地確認、捕獲班の出動計画に活用しています。
         </p>
         <div class="actions" aria-label="主要リンク">
           <a class="button primary" href="#guide">情報提供の方法</a>
@@ -54,26 +54,26 @@
     <section class="section" id="status">
       <div class="section-title">
         <p class="eyebrow">Status</p>
-        <h2>受付状況</h2>
-        <p>寄せられた情報は、地域の自然観察資料として整理します。</p>
+        <h2>捕獲調査状況</h2>
+        <p>寄せられた情報は、捕獲調査の優先度を判断する資料として整理します。</p>
       </div>
 
-      <div class="stats" aria-label="受付状況の概要">
+      <div class="stats" aria-label="捕獲調査状況の概要">
         <div class="stat">
           <strong>128件</strong>
           <span>累計受付件数</span>
         </div>
         <div class="stat">
           <strong>17地域</strong>
-          <span>確認対象地域</span>
+          <span>捕獲候補地域</span>
+        </div>
+        <div class="stat">
+          <strong>6件</strong>
+          <span>現地捕獲班の出動</span>
         </div>
         <div class="stat">
           <strong>0件</strong>
-          <span>捕獲・採取の要請</span>
-        </div>
-        <div class="stat">
-          <strong>月1回</strong>
-          <span>記録整理の更新</span>
+          <span>捕獲実績（累計）</span>
         </div>
       </div>
     </section>
@@ -82,7 +82,7 @@
       <div class="section-title">
         <p class="eyebrow">Mascot</p>
         <h2>マスコットキャラクター</h2>
-        <p>目撃情報の記録や自然観察への関心を、親しみやすく伝えるための案内役です。</p>
+        <p>捕獲調査への協力を、親しみやすく呼びかけるための案内役です。</p>
       </div>
 
       <div class="mascot-card">
@@ -93,13 +93,13 @@
           <p class="eyebrow">Official Mascot</p>
           <h3>つっちー</h3>
           <p>
-            地域の自然や昔からの言い伝えに関心を持ってもらうためのマスコットです。
-            情報提供時の注意点や記録の残し方を、分かりやすく案内します。
+            目撃情報の提供や捕獲調査への協力を呼びかけるマスコットです。
+            現地確認時の注意点や、捕獲班へ伝えてほしい情報を分かりやすく案内します。
           </p>
           <dl class="mascot-detail-list">
             <div>
               <dt>役割</dt>
-              <dd>自然観察と情報整理の案内</dd>
+              <dd>捕獲調査への協力案内</dd>
             </div>
             <div>
               <dt>特徴</dt>
@@ -110,17 +110,17 @@
       </div>
     </section>
 
-    <section class="section muted" aria-label="参考監視表示">
+    <section class="section muted" aria-label="ツチノコ捕獲レーダー">
       <div class="section-title">
-        <p class="eyebrow">Monitoring</p>
-        <h2>参考監視表示</h2>
-        <p>目撃情報の集中状況を確認するための参考表示です。</p>
+        <p class="eyebrow">Capture Radar</p>
+        <h2>ツチノコ捕獲レーダー</h2>
+        <p>寄せられた目撃情報と現地報告をもとに、捕獲優先度を表示しています。</p>
       </div>
 
       <div class="monitor">
         <div class="monitor-header">
-          <span>参考表示</span>
-          <span id="radar-status">確認中</span>
+          <span>捕獲レーダー稼働中</span>
+          <span id="radar-status">走査中</span>
         </div>
         <div class="radar">
           <div class="radar-screen">
@@ -130,8 +130,8 @@
             <div class="blip three"></div>
           </div>
           <div class="radar-readout">
-            <span id="radar-readout">受付集中度 72% / 区分 北東部</span>
-            <div class="signal-bars" data-strength="3" aria-label="受付集中度">
+            <span id="radar-readout">捕獲優先度 72% / 区分 北東部</span>
+            <div class="signal-bars" data-strength="3" aria-label="捕獲優先度">
               <span></span>
               <span></span>
               <span></span>
@@ -139,7 +139,7 @@
             </div>
           </div>
         </div>
-        <p class="monitor-note">受付内容の整理に使用する表示です。</p>
+        <p class="monitor-note">反応が高い地域から順に、捕獲班の出動候補として確認します。</p>
       </div>
     </section>
 
@@ -147,7 +147,7 @@
       <div class="section-title">
         <p class="eyebrow">Records</p>
         <h2>公表中の主な記録</h2>
-        <p>個人情報、詳細住所、私有地が特定される情報は掲載していません。</p>
+        <p>捕獲調査の対象として整理している主な情報です。</p>
       </div>
 
       <div class="record-list">
@@ -155,15 +155,15 @@
           <div class="record-code">S-041</div>
           <div>
             <h3>農道脇で短く太い影を確認</h3>
-            <p>夕方に茶色い胴体状の影を見たとの報告。写真はなく、周辺状況を確認中です。</p>
+            <p>夕方に茶色い胴体状の影を見たとの報告。捕獲班の出動可否を確認中です。</p>
           </div>
-          <span class="status">確認中</span>
+          <span class="status">出動確認中</span>
         </article>
         <article class="record" data-record-id="s042" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="record-modal">
           <div class="record-code">S-042</div>
           <div>
             <h3>沢沿いで幅広いこすれ跡を確認</h3>
-            <p>落ち葉の上に連続したこすれ跡があったとの報告。自然要因を含めて整理しています。</p>
+            <p>落ち葉の上に連続したこすれ跡があったとの報告。捕獲器の設置候補として整理しています。</p>
           </div>
           <span class="status">再確認予定</span>
         </article>
@@ -171,9 +171,9 @@
           <div class="record-code">S-043</div>
           <div>
             <h3>石垣付近で不明な音を聞いたとの報告</h3>
-            <p>複数名から音に関する情報提供があり、録音データの有無を確認しています。</p>
+            <p>複数名から音に関する情報提供があり、夜間確認の候補として整理しています。</p>
           </div>
-          <span class="status">資料整理中</span>
+          <span class="status">夜間候補</span>
         </article>
       </div>
     </section>
@@ -181,22 +181,22 @@
     <section class="section muted" id="guide">
       <div class="section-title">
         <p class="eyebrow">Guidance</p>
-        <h2>情報提供時のお願い</h2>
-        <p>安全確保と地域への配慮を優先して記録してください。</p>
+        <h2>捕獲調査への協力のお願い</h2>
+        <p>発見時は無理に捕まえず、捕獲班が確認できる情報を残してください。</p>
       </div>
 
       <div class="guide-list">
         <article class="guide-item">
-          <h3>場所と時刻を記録する</h3>
-          <p>市町村名、周辺の目印、確認した時刻、天候を可能な範囲で記録してください。</p>
+          <h3>場所と時刻を知らせる</h3>
+          <p>市町村名、周辺の目印、確認した時刻、天候を可能な範囲でお知らせください。</p>
         </article>
         <article class="guide-item">
-          <h3>写真は周囲も含める</h3>
-          <p>対象物だけでなく、道、草木、石、斜面など、環境が分かる構図が有用です。</p>
+          <h3>捕獲しやすい状況を伝える</h3>
+          <p>逃げ込んだ方向、周囲の草木、側溝、石垣など、捕獲班が確認しやすい情報が有用です。</p>
         </article>
         <article class="guide-item">
-          <h3>立入禁止区域に入らない</h3>
-          <p>私有地、農地、神社林、保護区域には入らず、地域の生活環境を尊重してください。</p>
+          <h3>無理な単独捕獲をしない</h3>
+          <p>私有地や危険な場所には入らず、捕獲班の到着まで距離を保ってください。</p>
         </article>
       </div>
     </section>
@@ -204,10 +204,10 @@
     <section class="section contact" id="contact">
       <div>
         <p class="eyebrow">Contact</p>
-        <h2>情報提供・問い合わせ</h2>
+        <h2>捕獲情報の提供・問い合わせ</h2>
         <p>
-          目撃情報、写真、音声、聞き書き資料などを受け付けています。
-          提供内容は個人が特定されない形で整理します。
+          目撃情報、写真、音声、捕獲候補地の情報などを受け付けています。
+          提供内容は捕獲調査の判断材料として整理します。
         </p>
       </div>
       <button class="button primary" id="report-button" type="button">情報提供する</button>
@@ -228,9 +228,9 @@
 
   <div class="notice-modal" id="report-modal" role="dialog" aria-modal="true" aria-labelledby="report-modal-title" hidden>
     <div class="notice-dialog">
-      <h2 id="report-modal-title">受付一時停止のお知らせ</h2>
+      <h2 id="report-modal-title">捕獲情報受付一時停止のお知らせ</h2>
       <p>
-        現在、多くの情報が寄せられているため、情報提供の受付を一時停止しています。
+        現在、多くの捕獲候補情報が寄せられているため、情報提供の受付を一時停止しています。
         受付再開までしばらくお待ちください。
       </p>
       <button class="button primary" id="report-modal-close" type="button">閉じる</button>
@@ -244,7 +244,7 @@
       <p id="record-modal-summary"></p>
       <dl class="record-detail-list">
         <div>
-          <dt>受付状況</dt>
+          <dt>捕獲状況</dt>
           <dd id="record-modal-status"></dd>
         </div>
         <div>
@@ -261,7 +261,7 @@
   </div>
 
   <footer class="footer">
-    <small>&copy; 2026 ツチノコ目撃情報連絡窓口.</small>
+    <small>&copy; 2026 ツチノコ捕獲調査会.</small>
   </footer>
 
   <script src="script.js" defer></script>
