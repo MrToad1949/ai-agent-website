@@ -90,8 +90,7 @@ a {
 }
 
 .hero,
-.section,
-.contact {
+.section {
   max-width: 1180px;
   margin: 0 auto;
   padding: 28px 20px;
@@ -111,7 +110,7 @@ a {
 .record,
 .mascot-card,
 .guide-item,
-.contact {
+.contact-panel {
   background: #fff;
   border: 1px solid #8fa7b4;
 }
@@ -152,6 +151,8 @@ h1 {
 }
 
 h2 {
+  display: block;
+  width: 100%;
   margin-bottom: 10px;
   padding: 7px 10px;
   color: #fff;
@@ -171,6 +172,12 @@ h3 {
 
 p {
   color: #222;
+}
+
+.eyebrow + h1,
+.eyebrow + h2,
+.eyebrow + h3 {
+  margin-top: 0;
 }
 
 .actions {
@@ -269,12 +276,15 @@ p {
 }
 
 .section-title {
-  max-width: 760px;
   margin-bottom: 16px;
 }
 
+.section-title > p:last-child {
+  max-width: 760px;
+}
+
 .section-title p:last-child,
-.contact p {
+.contact-panel p:last-child {
   margin-bottom: 0;
 }
 
@@ -578,11 +588,23 @@ p {
   margin-bottom: 0;
 }
 
-.contact {
+.contact-panel {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
   gap: 16px;
+  padding: 14px;
+}
+
+.contact-panel > div {
+  width: 100%;
+}
+
+.contact-panel .button {
+  align-self: flex-end;
+}
+
+#contact {
   margin-bottom: 32px;
 }
 
@@ -730,7 +752,7 @@ p {
 
 @media (max-width: 880px) {
   .header-inner,
-  .contact {
+  .contact-panel {
     align-items: flex-start;
     flex-direction: column;
   }
