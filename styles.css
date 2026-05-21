@@ -184,6 +184,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
+  width: 100%;
   gap: 8px;
   margin-top: 18px;
 }
@@ -275,6 +276,7 @@ p {
   border-top: 1px solid #8fa7b4;
   font-size: 13px;
   text-align: right;
+  width: 100%;
 }
 
 .section-title {
@@ -408,12 +410,12 @@ p {
 
 .radar {
   position: relative;
-  display: grid;
-  grid-template-rows: minmax(240px, 1fr) auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 14px;
   min-height: 300px;
   padding: 18px 16px 16px;
-  place-items: center;
   overflow: hidden;
   background:
     repeating-linear-gradient(0deg, rgba(40, 82, 122, 0.08) 0 1px, transparent 1px 34px),
@@ -424,6 +426,7 @@ p {
 .radar-screen {
   position: relative;
   width: min(70%, 260px);
+  flex: 0 0 auto;
   aspect-ratio: 1;
   border: 2px solid rgba(40, 82, 122, 0.7);
   border-radius: 50%;
@@ -497,6 +500,7 @@ p {
   position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
+  flex: 0 0 auto;
   gap: 12px;
   align-items: center;
   width: 100%;
@@ -726,6 +730,7 @@ p {
   background: #fff;
   font-size: 13px;
   text-align: right;
+  width: 100%;
 }
 
 .modal-close {
