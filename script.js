@@ -54,7 +54,7 @@ setInterval(() => {
   const barLevel = Math.max(1, Math.min(4, Math.ceil(strength / 25)));
   const area = areas[tick % areas.length];
 
-  readout.textContent = `捕獲優先度 ${strength}% / 区分 ${area}`;
+  readout.textContent = `出現可能性 ${strength}% / 区分 ${area}`;
   status.textContent = strength > 78 ? "強反応" : "走査中";
   bars.dataset.strength = String(barLevel);
 }, 1400);
