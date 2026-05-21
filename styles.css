@@ -40,22 +40,22 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .brand-mark {
-  display: grid;
+  display: block;
   width: 44px;
   height: 44px;
-  place-items: center;
-  color: #fff;
-  background: #006699;
-  border: 2px solid #004b70;
-  font-weight: 700;
+  flex: 0 0 auto;
+  object-fit: cover;
+  background: #fff;
 }
 
 .brand-title,
 .brand-subtitle {
   display: block;
+  overflow-wrap: anywhere;
 }
 
 .brand-title {
@@ -183,6 +183,7 @@ p {
 .actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
   margin-top: 18px;
 }
@@ -273,6 +274,7 @@ p {
   color: #333;
   border-top: 1px solid #8fa7b4;
   font-size: 13px;
+  text-align: right;
 }
 
 .section-title {
@@ -407,7 +409,10 @@ p {
 .radar {
   position: relative;
   display: grid;
+  grid-template-rows: minmax(240px, 1fr) auto;
+  gap: 14px;
   min-height: 300px;
+  padding: 18px 16px 16px;
   place-items: center;
   overflow: hidden;
   background:
@@ -417,7 +422,7 @@ p {
 }
 
 .radar-screen {
-  position: absolute;
+  position: relative;
   width: min(70%, 260px);
   aspect-ratio: 1;
   border: 2px solid rgba(40, 82, 122, 0.7);
@@ -444,7 +449,7 @@ p {
   border: 2px solid #fff;
   border-radius: 50%;
   box-shadow: 0 0 0 0 rgba(79, 111, 82, 0.45);
-  animation: blipBlink 2.4s ease-in-out infinite;
+  animation: blipBlink 4.4s ease-in-out infinite;
 }
 
 .blip::after {
@@ -455,48 +460,46 @@ p {
   border-radius: 50%;
   opacity: 0;
   transform: scale(0.35);
-  animation: blipPing 2.4s ease-out infinite;
+  animation: blipPing 4.4s ease-out infinite;
 }
 
 .blip.one {
   top: 28%;
   left: 34%;
-  animation-duration: 2.2s;
+  animation-duration: 4s;
 }
 
 .blip.two {
   right: 26%;
   bottom: 36%;
-  animation-delay: 0.45s;
-  animation-duration: 3.1s;
+  animation-delay: 0.8s;
+  animation-duration: 5.2s;
 }
 
 .blip.three {
   left: 50%;
   bottom: 24%;
-  animation-delay: 1.1s;
-  animation-duration: 2.7s;
+  animation-delay: 1.7s;
+  animation-duration: 4.8s;
 }
 
 .blip.two::after {
-  animation-delay: 0.45s;
-  animation-duration: 3.1s;
+  animation-delay: 0.8s;
+  animation-duration: 5.2s;
 }
 
 .blip.three::after {
-  animation-delay: 1.1s;
-  animation-duration: 2.7s;
+  animation-delay: 1.7s;
+  animation-duration: 4.8s;
 }
 
 .radar-readout {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  left: 16px;
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 12px;
   align-items: center;
+  width: 100%;
   padding: 12px;
   color: #24343d;
   background: rgba(255, 255, 255, 0.96);
@@ -722,6 +725,7 @@ p {
   border-top: 1px solid #8fa7b4;
   background: #fff;
   font-size: 13px;
+  text-align: right;
 }
 
 .modal-close {
@@ -819,6 +823,38 @@ p {
     flex-direction: column;
   }
 
+  .header-inner {
+    gap: 12px;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .nav a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    border-right: 1px solid #7a9aac;
+    border-bottom: 1px solid #7a9aac;
+    text-align: center;
+  }
+
+  .nav a:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .nav a:nth-last-child(-n+2) {
+    border-bottom: 0;
+  }
+
   .hero {
     grid-template-columns: 1fr;
   }
@@ -878,6 +914,6 @@ p {
 
   .site-note {
     margin-top: -24px;
-    text-align: left;
+    text-align: right;
   }
 }

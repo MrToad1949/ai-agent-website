@@ -55,7 +55,7 @@ setInterval(() => {
   const area = areas[tick % areas.length];
 
   readout.textContent = `出現可能性 ${strength}% / 区分 ${area}`;
-  status.textContent = strength > 78 ? "強反応" : "走査中";
+  status.textContent = strength > 78 ? "強反応" : "稼働中";
   bars.dataset.strength = String(barLevel);
 }, 1400);
 
